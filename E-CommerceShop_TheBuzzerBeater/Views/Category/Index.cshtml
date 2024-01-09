@@ -1,26 +1,50 @@
 ﻿@model List<Category>
 
-<h1>Category List</h1>
-<table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-        <th>
-             Category Name 
-        </th>
-        <th>
-            Display Order
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-        @foreach(var obj in Model.OrderBy(u=>u.DisplayOrder))
-        {
-        <tr>
-            <td>@obj.Name</td>
-            <td>@obj.DisplayOrder</td>
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Category List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>  Create new Category
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr class="table-secondary">
+                <th scope ="row">
+                    <h4>Category Name </h4>
+                </th>
+                <th scope="row">
+                    <h4>Display Order</h4>
+                </th>
+                <th></th>
         </tr>
-        }
-    </tbody>
+        </thead>
+        <tbody>
+            @foreach(var obj in Model.OrderBy(u=>u.DisplayOrder))
+            {
+            <tr class="table-dark">
+                    <td><h5>@obj.Name</h5></td>
+                    <td><h5>@obj.DisplayOrder</h5></td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Category" asp-action="Edit" asp-route-categoryId="@obj.CategoryId" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-categoryId="@obj.CategoryId" class="btn btn-danger mx-2">
+                            <i class="bi bi-trash3-fill"></i> Delete
+                        </a>
+                        </div>
+                    </td>
+            </tr>
+            }
+        </tbody>
 
 
-</table>
+    </table>
+</div>

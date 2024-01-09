@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_CommerceShop_TheBuzzerBeater.Models
 {
@@ -7,8 +8,11 @@ namespace E_CommerceShop_TheBuzzerBeater.Models
         [Key] 
         public int CategoryId { get; set; }
         [Required]
+        [DisplayName("Category Name")]
+        [MaxLength(100)]
         public string Name { get; set; }
-
+        [DisplayName("Display Order")]
+        [Range(1,150,ErrorMessage ="Display Order must be between 1-150")]
         public int DisplayOrder { get; set; }
     }
 }
