@@ -1,4 +1,4 @@
-using E_CommerceShop_TheBuzzerBeater.Models;
+using TheBuzzerBeater.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

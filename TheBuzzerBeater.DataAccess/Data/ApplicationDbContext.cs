@@ -1,7 +1,8 @@
-﻿using E_CommerceShop_TheBuzzerBeater.Models;
+﻿using TheBuzzerBeater.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace E_CommerceShop_TheBuzzerBeater.Data
+
+namespace TheBuzzerBeater.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

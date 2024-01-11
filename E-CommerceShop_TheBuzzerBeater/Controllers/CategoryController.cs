@@ -1,19 +1,21 @@
-﻿using E_CommerceShop_TheBuzzerBeater.Data;
-using E_CommerceShop_TheBuzzerBeater.Models;
+﻿
 using Microsoft.AspNetCore.Mvc;
+using TheBuzzerBeater.DataAccess.Data;
+using TheBuzzerBeater.DataAccess.Repository.IRepository;
+using TheBuzzerBeater.Models;
 
-namespace E_CommerceShop_TheBuzzerBeater.Controllers
+namespace TheBuzzerBeater.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList= _db.Categories.ToList();
+            List<Category> objCategoryList= _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
         
@@ -26,8 +28,8 @@ namespace E_CommerceShop_TheBuzzerBeater.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category created succesfully";
                 return RedirectToAction("Index");
             }
@@ -40,7 +42,7 @@ namespace E_CommerceShop_TheBuzzerBeater.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(categoryId);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.CategoryId==categoryId);
             if (categoryFromDb == null) 
             {
                 return NotFound();
@@ -52,8 +54,8 @@ namespace E_CommerceShop_TheBuzzerBeater.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category updated succesfully";
                 return RedirectToAction("Index");
             }
@@ -66,7 +68,7 @@ namespace E_CommerceShop_TheBuzzerBeater.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(categoryId);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.CategoryId == categoryId);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -76,13 +78,13 @@ namespace E_CommerceShop_TheBuzzerBeater.Controllers
         [HttpPost,ActionName("Delete")]
         public IActionResult DeletePOST(int? categoryId)
         {
-            Category? obj = _db.Categories.Find(categoryId);
+            Category? obj = _unitOfWork.Category.Get(u => u.CategoryId == categoryId);
             if (obj == null) 
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category deleted succesfully";
             return RedirectToAction("Index");
             

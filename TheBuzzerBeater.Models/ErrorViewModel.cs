@@ -1,4 +1,4 @@
-namespace E_CommerceShop_TheBuzzerBeater.Models
+namespace TheBuzzerBeater.Models
 {
     public class ErrorViewModel
     {
