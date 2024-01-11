@@ -23,4 +23,8 @@
     <ProjectReference Include="..\TheBuzzerBeater.Models\TheBuzzerBeater.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

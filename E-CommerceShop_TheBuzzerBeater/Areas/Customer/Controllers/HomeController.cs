@@ -2,8 +2,9 @@ using TheBuzzerBeater.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace E_CommerceShop_TheBuzzerBeater.Controllers
+namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
