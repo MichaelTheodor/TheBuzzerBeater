@@ -26,7 +26,6 @@ namespace TheBuzzerBeater.Models
 
         [Required]
         [DataType(DataType.Currency)]
-        [Column(TypeName = "double(18, 2)")]
         [Range(1,2000)] 
         public double Price { get; set; }
 
