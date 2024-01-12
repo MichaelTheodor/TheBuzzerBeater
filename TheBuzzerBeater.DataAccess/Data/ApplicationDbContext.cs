@@ -34,13 +34,49 @@ namespace TheBuzzerBeater.DataAccess.Data
                 );
 
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, Name = "back-me-up-cup-nba-boston-celtics", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
-                new Product { ProductId = 2, Name = "back-me-up-cup-nba-bucks", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
-                new Product { ProductId = 3, Name = "back-me-up-cup-nba-bulls", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
-                new Product { ProductId = 4, Name = "back-me-up-cup-nba-la-lakers", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
-                new Product { ProductId = 5, Name = "back-me-up-cup-nba-la-lakers-second", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
-                new Product { ProductId = 6, Name = "back-me-up-cup-nba-logo", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 5, CategoryId = 10, ImageUrl = "" }
-        );
+                new Product {
+                    ProductId = 1,
+                    Name = "back-me-up-cup-nba-boston-celtics",
+                    Description = "Ceramic mugs and cups with your favorite NBA team",
+                    Price = 6,
+                    CategoryId = 10,
+                    ImageUrl = "@/img/product/mugs & cups/back-me-up-koupa-keramapli-nba-boston-celtics.jpg" },
+                new Product {
+                    ProductId = 2,
+                    Name = "back-me-up-cup-nba-bucks",
+                    Description = "Ceramic mugs and cups with your favorite NBA team",
+                    Price = 6,
+                    CategoryId = 10,
+                    ImageUrl = "@/img/product/mugs & cups/back-me-up-koupa-keramapli-nba-bucks" },
+                new Product {
+                    ProductId = 3,
+                    Name = "back-me-up-cup-nba-bulls",
+                    Description = "Ceramic mugs and cups with your favorite NBA team",
+                    Price = 6,
+                    CategoryId = 10,
+                    ImageUrl = "@/img/product/mugs & cups/back-me-up-koupa-keramapli-nba-bulls" },
+                new Product {
+                    ProductId = 4,
+                    Name = "back-me-up-cup-nba-la-lakers",
+                    Description = "Ceramic mugs and cups with your favorite NBA team",
+                    Price = 6,
+                    CategoryId = 10,
+                    ImageUrl = "@/img/product/mugs & cups/back-me-up-koupa-keramapli-nba-la-lakers (1)" },
+                new Product {
+                    ProductId = 5,
+                    Name = "back-me-up-cup-nba-la-lakers-second",
+                    Description = "Ceramic mugs and cups with your favorite NBA team",
+                    Price = 6,
+                    CategoryId = 10,
+                    ImageUrl = "@/img/product/mugs & cups/back-me-up-koupa-keramapli-nba-la-lakers" },
+                new Product {
+                    ProductId = 6,
+                    Name = "back-me-up-cup-nba-logo",
+                    Description = "Ceramic mugs and cups with your favorite NBA team",
+                    Price = 5,
+                    CategoryId = 10,
+                    ImageUrl = "@/img/product/mugs & cups/back-me-up-koupa-keramapli-nba-logo" }
+                );
         }
     }
 }
