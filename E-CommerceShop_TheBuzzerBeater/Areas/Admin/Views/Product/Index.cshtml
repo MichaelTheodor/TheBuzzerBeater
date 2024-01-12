@@ -20,17 +20,23 @@
                     <h4>Product Name </h4>
                 </th>
                 <th scope="row">
-                    <h4>Display Order</h4>
+                    <h4>Description</h4>
                 </th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>ImageUrl</th>
                 <th></th>
         </tr>
         </thead>
         <tbody>
-            @foreach(var obj in Model.OrderBy(u=>u.DisplayOrder))
+            @foreach(var obj in Model)
             {
             <tr class="table-dark">
                     <td><h5>@obj.Name</h5></td>
-                    <td><h5>@obj.DisplayOrder</h5></td>
+                    <td><h5>@obj.Description</h5></td>
+                    <td><h5>@obj.Price</h5></td>
+                    <td><h5>@obj.Category</h5></td>
+                    <td><h5>@obj.ImageUrl</h5></td>
                     <td>
                         <div class="w-75 btn-group" role="group">
                         <a asp-controller="Product" asp-action="Edit" asp-route-productId="@obj.ProductId" class="btn btn-primary mx-2">
