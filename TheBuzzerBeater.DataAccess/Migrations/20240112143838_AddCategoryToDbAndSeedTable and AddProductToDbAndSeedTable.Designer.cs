@@ -11,8 +11,8 @@ using TheBuzzerBeater.DataAccess.Data;
 namespace TheBuzzerBeater.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240109150450_AddCategoryToDb and SeedTable")]
-    partial class AddCategoryToDbandSeedTable
+    [Migration("20240112143838_AddCategoryToDbAndSeedTable and AddProductToDbAndSeedTable")]
+    partial class AddCategoryToDbAndSeedTableandAddProductToDbAndSeedTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,6 +129,108 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             DisplayOrder = 14,
                             Name = "Stickers"
                         });
+                });
+
+            modelBuilder.Entity("TheBuzzerBeater.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            CategoryId = 10,
+                            Description = "Ceramic mugs and cups with your favorite NBA team",
+                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-boston-celtics.jpg",
+                            Name = "back-me-up-cup-nba-boston-celtics",
+                            Price = 6.0
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            CategoryId = 10,
+                            Description = "Ceramic mugs and cups with your favorite NBA team",
+                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-bucks",
+                            Name = "back-me-up-cup-nba-bucks",
+                            Price = 6.0
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            CategoryId = 10,
+                            Description = "Ceramic mugs and cups with your favorite NBA team",
+                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-bulls",
+                            Name = "back-me-up-cup-nba-bulls",
+                            Price = 6.0
+                        },
+                        new
+                        {
+                            ProductId = 4,
+                            CategoryId = 10,
+                            Description = "Ceramic mugs and cups with your favorite NBA team",
+                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-la-lakers (1)",
+                            Name = "back-me-up-cup-nba-la-lakers",
+                            Price = 6.0
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            CategoryId = 10,
+                            Description = "Ceramic mugs and cups with your favorite NBA team",
+                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-la-lakers",
+                            Name = "back-me-up-cup-nba-la-lakers-second",
+                            Price = 6.0
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            CategoryId = 10,
+                            Description = "Ceramic mugs and cups with your favorite NBA team",
+                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-logo",
+                            Name = "back-me-up-cup-nba-logo",
+                            Price = 5.0
+                        });
+                });
+
+            modelBuilder.Entity("TheBuzzerBeater.Models.Product", b =>
+                {
+                    b.HasOne("TheBuzzerBeater.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
