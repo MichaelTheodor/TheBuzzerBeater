@@ -4,8 +4,9 @@ using TheBuzzerBeater.DataAccess.Data;
 using TheBuzzerBeater.DataAccess.Repository.IRepository;
 using TheBuzzerBeater.Models;
 
-namespace TheBuzzerBeater.Web.Controllers
+namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -15,11 +16,11 @@ namespace TheBuzzerBeater.Web.Controllers
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList= _unitOfWork.Category.GetAll().ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
-        
-        public IActionResult Create() 
+
+        public IActionResult Create()
         {
             return View();
         }
@@ -38,12 +39,12 @@ namespace TheBuzzerBeater.Web.Controllers
 
         public IActionResult Edit(int? categoryId)
         {
-            if (categoryId==null || categoryId == 0) 
+            if (categoryId == null || categoryId == 0)
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.CategoryId==categoryId);
-            if (categoryFromDb == null) 
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.CategoryId == categoryId);
+            if (categoryFromDb == null)
             {
                 return NotFound();
             }
@@ -75,11 +76,11 @@ namespace TheBuzzerBeater.Web.Controllers
             }
             return View(categoryFromDb);
         }
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? categoryId)
         {
             Category? obj = _unitOfWork.Category.Get(u => u.CategoryId == categoryId);
-            if (obj == null) 
+            if (obj == null)
             {
                 return NotFound();
             }
@@ -87,7 +88,7 @@ namespace TheBuzzerBeater.Web.Controllers
             _unitOfWork.Save();
             TempData["success"] = "Category deleted succesfully";
             return RedirectToAction("Index");
-            
+
         }
     }
 }
