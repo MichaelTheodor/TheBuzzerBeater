@@ -12,6 +12,7 @@ namespace TheBuzzerBeater.DataAccess.Data
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +32,17 @@ namespace TheBuzzerBeater.DataAccess.Data
                 new Category { CategoryId = 13,Name = "Socks", DisplayOrder = 13 },
                 new Category { CategoryId = 14,Name = "Stickers", DisplayOrder = 14 }
                 );
+
+            modelBuilder.Entity<Product>().HasData(
+                new Product { ProductId = 1, Name = "back-me-up-cup-nba-boston-celtics", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
+                new Product { ProductId = 2, Name = "back-me-up-cup-nba-bucks", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
+                new Product { ProductId = 3, Name = "back-me-up-cup-nba-bulls", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
+                new Product { ProductId = 4, Name = "back-me-up-cup-nba-la-lakers", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
+                new Product { ProductId = 5, Name = "back-me-up-cup-nba-la-lakers-second", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 6, CategoryId = 10, ImageUrl = "" },
+                new Product { ProductId = 6, Name = "back-me-up-cup-nba-logo", Description = "Ceramic mugs and cups with your favorite NBA team", Price = 5, CategoryId = 10, ImageUrl = "" }
+        );
         }
     }
 }
+
+
