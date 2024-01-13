@@ -11,7 +11,7 @@ using TheBuzzerBeater.DataAccess.Data;
 namespace TheBuzzerBeater.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240112143838_AddCategoryToDbAndSeedTable and AddProductToDbAndSeedTable")]
+    [Migration("20240113183346_AddCategoryToDbAndSeedTable and AddProductToDbAndSeedTable")]
     partial class AddCategoryToDbAndSeedTableandAddProductToDbAndSeedTable
     {
         /// <inheritdoc />
@@ -171,7 +171,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 1,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-boston-celtics.jpg",
+                            ImageUrl = "\\images\\products\\back - me - up - koupa - keramapli - nba - boston - celtics.jpg ",
                             Name = "back-me-up-cup-nba-boston-celtics",
                             Price = 6.0
                         },
@@ -180,7 +180,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 2,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-bucks",
+                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-bucks",
                             Name = "back-me-up-cup-nba-bucks",
                             Price = 6.0
                         },
@@ -189,7 +189,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 3,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-bulls",
+                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-bulls",
                             Name = "back-me-up-cup-nba-bulls",
                             Price = 6.0
                         },
@@ -198,7 +198,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 4,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-la-lakers (1)",
+                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-la-lakers (1)",
                             Name = "back-me-up-cup-nba-la-lakers",
                             Price = 6.0
                         },
@@ -207,7 +207,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 5,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-la-lakers",
+                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-la-lakers",
                             Name = "back-me-up-cup-nba-la-lakers-second",
                             Price = 6.0
                         },
@@ -216,7 +216,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 6,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "@/images/product/back-me-up-koupa-keramapli-nba-logo",
+                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-logo",
                             Name = "back-me-up-cup-nba-logo",
                             Price = 5.0
                         });

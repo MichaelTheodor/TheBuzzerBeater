@@ -75,12 +75,12 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                 columns: new[] { "ProductId", "CategoryId", "Description", "ImageUrl", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, 10, "Ceramic mugs and cups with your favorite NBA team", "@/images/product/back-me-up-koupa-keramapli-nba-boston-celtics.jpg", "back-me-up-cup-nba-boston-celtics", 6.0 },
-                    { 2, 10, "Ceramic mugs and cups with your favorite NBA team", "@/images/product/back-me-up-koupa-keramapli-nba-bucks", "back-me-up-cup-nba-bucks", 6.0 },
-                    { 3, 10, "Ceramic mugs and cups with your favorite NBA team", "@/images/product/back-me-up-koupa-keramapli-nba-bulls", "back-me-up-cup-nba-bulls", 6.0 },
-                    { 4, 10, "Ceramic mugs and cups with your favorite NBA team", "@/images/product/back-me-up-koupa-keramapli-nba-la-lakers (1)", "back-me-up-cup-nba-la-lakers", 6.0 },
-                    { 5, 10, "Ceramic mugs and cups with your favorite NBA team", "@/images/product/back-me-up-koupa-keramapli-nba-la-lakers", "back-me-up-cup-nba-la-lakers-second", 6.0 },
-                    { 6, 10, "Ceramic mugs and cups with your favorite NBA team", "@/images/product/back-me-up-koupa-keramapli-nba-logo", "back-me-up-cup-nba-logo", 5.0 }
+                    { 1, 10, "Ceramic mugs and cups with your favorite NBA team", "\\images\\products\\back - me - up - koupa - keramapli - nba - boston - celtics.jpg ", "back-me-up-cup-nba-boston-celtics", 6.0 },
+                    { 2, 10, "Ceramic mugs and cups with your favorite NBA team", "\\images\\products\\back -me-up-koupa-keramapli-nba-bucks", "back-me-up-cup-nba-bucks", 6.0 },
+                    { 3, 10, "Ceramic mugs and cups with your favorite NBA team", "\\images\\products\\back -me-up-koupa-keramapli-nba-bulls", "back-me-up-cup-nba-bulls", 6.0 },
+                    { 4, 10, "Ceramic mugs and cups with your favorite NBA team", "\\images\\products\\back -me-up-koupa-keramapli-nba-la-lakers (1)", "back-me-up-cup-nba-la-lakers", 6.0 },
+                    { 5, 10, "Ceramic mugs and cups with your favorite NBA team", "\\images\\products\\back -me-up-koupa-keramapli-nba-la-lakers", "back-me-up-cup-nba-la-lakers-second", 6.0 },
+                    { 6, 10, "Ceramic mugs and cups with your favorite NBA team", "\\images\\products\\back -me-up-koupa-keramapli-nba-logo", "back-me-up-cup-nba-logo", 5.0 }
                 });
 
             migrationBuilder.CreateIndex(
