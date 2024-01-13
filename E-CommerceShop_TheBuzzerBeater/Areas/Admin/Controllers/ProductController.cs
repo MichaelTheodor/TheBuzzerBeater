@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TheBuzzerBeater.DataAccess.Data;
+using TheBuzzerBeater.DataAccess.Repository;
 using TheBuzzerBeater.DataAccess.Repository.IRepository;
 using TheBuzzerBeater.Models;
 using TheBuzzerBeater.Models.ViewModels;
@@ -134,5 +135,20 @@ namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
 
         }
+
+        #region API CALLS
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+
+            return Json(new { data = objProductList });
+        }
+
+        #endregion
     }
 }
+
+
+    

@@ -13,22 +13,18 @@
             </a>
         </div>
     </div>
-    <table class="table table-bordered table-striped text-center">
+    <table id="tblData" class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr class="table-secondary">
-                <th scope ="row">
-                    <h4>Product Name </h4>
-                </th>
-                <th scope="row">
-                    <h4>Description</h4>
-                </th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>ImageUrl</th>
+                <th><h4>Product Name </h4></th>
+                <th><h4>Category</h4></th>
+                <th><h4>Description</h4></th>
+                <th><h4>Price</h4></th>
+                
                 <th></th>
         </tr>
         </thead>
-        <tbody>
+       @*  <tbody>
             @foreach(var obj in Model)
             {
             <tr class="table-dark">
@@ -49,8 +45,12 @@
                     </td>
             </tr>
             }
-        </tbody>
+        </tbody> *@
 
 
     </table>
 </div>
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}

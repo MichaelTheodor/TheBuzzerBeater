@@ -20,3 +20,6 @@ html {
 body {
   margin-bottom: 60px;
 }
+.btn-action {
+    width: 100%; /* Adjust the width as needed */
+}

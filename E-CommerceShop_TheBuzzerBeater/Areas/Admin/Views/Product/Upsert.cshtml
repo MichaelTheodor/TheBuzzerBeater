@@ -18,6 +18,13 @@
                     <span asp-validation-for="Product.Name" class="text-danger"></span>
                 </div>
                 <div class="mb-3 row p-1">
+                    <label asp-for="Product.Category" class="p-0 h5"></label>
+                    <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-control">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
                     <label asp-for="Product.Description" class="p-0 h5"></label>
                     <textarea asp-for="Product.Description" class="form-control"></textarea>
                     <span asp-validation-for="Product.Description" class="text-danger"></span>
@@ -26,13 +33,6 @@
                     <label asp-for="Product.Price" class="p-0 h5"></label>
                     <input asp-for="Product.Price" class="form-control" />
                     <span asp-validation-for="Product.Price" class="text-danger"></span>
-                </div>
-                <div class="mb-3 row p-1">
-                    <label asp-for="Product.CategoryId" class="p-0 h5"></label>
-                    <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-control">
-                        <option disabled selected>--Select Category--</option>
-                    </select>
-                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
                 </div>
                 <div class="mb-3 row p-1">
                     <label asp-for="Product.ImageUrl" class="p-0 h5"></label>
