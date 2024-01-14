@@ -18,7 +18,7 @@ function loadDataTable() {
                     return `<div class="w-75 btn-group" role="group">
                     <a href="/admin/product/upsert?productId=${data}" class="btn btn-primary mx-2">
                             <i class="bi bi-pencil-square"></i> Edit</a>
-                    <a onClick=Delete("/admin/product/delete/?productId=${data}") class="btn btn-primary mx-2">
+                    <a onClick=Delete("/admin/product/delete/?productId=${data}") class="btn btn-danger mx-2">
                             <i class="bi bi-trash3-fill"></i> Delete</a>
                     </div>`
                 },
