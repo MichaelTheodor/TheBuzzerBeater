@@ -37,7 +37,7 @@ namespace TheBuzzerBeater.DataAccess.Data
             modelBuilder.Entity<Product>().HasData(
                 new Product {
                     ProductId = 1,
-                    Name = "back-me-up-cup-nba-boston-celtics",
+                    Name = "Nba Boston Celtics Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
                     CategoryId = 10,
@@ -45,7 +45,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                 },
                 new Product {
                     ProductId = 2,
-                    Name = "back-me-up-cup-nba-bucks",
+                    Name = "Nba Milwaukee Bucks Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
                     CategoryId = 10,
@@ -53,7 +53,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                 },
                 new Product {
                     ProductId = 3,
-                    Name = "back-me-up-cup-nba-bulls",
+                    Name = "Nba Chicago Bulls Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
                     CategoryId = 10,
@@ -61,7 +61,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                 },
                 new Product {
                     ProductId = 4,
-                    Name = "back-me-up-cup-nba-la-lakers",
+                    Name = "Nba Los Angeles Lakers Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
                     CategoryId = 10,
@@ -69,7 +69,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                 },
                 new Product {
                     ProductId = 5,
-                    Name = "back-me-up-cup-nba-la-lakers-second",
+                    Name = "Nba Los Angeles Lakers Cup 2",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
                     CategoryId = 10,
@@ -77,7 +77,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                 },
                 new Product {
                     ProductId = 6,
-                    Name = "back-me-up-cup-nba-logo",
+                    Name = "Nba Logo Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 5,
                     CategoryId = 10,
