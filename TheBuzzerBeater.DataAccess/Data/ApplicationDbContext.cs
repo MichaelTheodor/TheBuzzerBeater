@@ -1,11 +1,17 @@
 ﻿using TheBuzzerBeater.Models;
+
+
 using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
+
 
 
 namespace TheBuzzerBeater.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -17,6 +23,8 @@ namespace TheBuzzerBeater.DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { CategoryId = 1, Name = "Air Pumps", DisplayOrder = 1},
                 new Category { CategoryId = 2, Name = "Arm Sleeves", DisplayOrder = 2 },
