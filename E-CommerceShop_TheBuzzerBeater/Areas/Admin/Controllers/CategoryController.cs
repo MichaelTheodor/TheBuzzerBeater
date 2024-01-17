@@ -1,12 +1,15 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TheBuzzerBeater.DataAccess.Data;
 using TheBuzzerBeater.DataAccess.Repository.IRepository;
 using TheBuzzerBeater.Models;
+using TheBuzzerBeater.Utilities;
 
 namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = StaticDetails.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
