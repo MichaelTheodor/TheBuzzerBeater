@@ -1,36 +1,77 @@
 ﻿@model IEnumerable<Product>
 
 
-    <div>
-        <p>Welcome to TheBuzzerBeater – Your Ultimate NBA Fashion Destination!</p>
-        <p>
-            At TheBuzzerBeater online shop, we believe that style and passion go hand in hand. Our mission is to bring the excitement of the NBA from the court to your closet, offering a curated collection of high-quality, trendsetting NBA-themed apparel and accessories.
-        </p>
-    </div>
-   
-
-
-<div class="row pb-3">
-    @foreach (var product in Model)
-    {
-        <div class="col-lg-3 col-sm-6 mb-3">
-            <div class="card border-0 p-3 shadow rounded">
-                <img src="@product.ImageUrl" class="card-img-top rounded" />
-                <div class="card-body">
-                    <h5 class="card-title text-opacity-75 text-uppercase text-center">@product.Name</h5>
-                     
-                    <p class="text-opacity-75 text-uppercase text-center">
-                        Price: <span>@product.Price.ToString("c")</span>
-                    </p>
-                </div>
-                <div> 
-                    <a asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
-                        Details
-                    </a>
-                </div>
-            </div>
+<!-- Header Section -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <!-- Welcome message, logo, and introductory content -->
+            <h2 class="text-center mt-4 mb-4">Welcome to TheBuzzerBeater – Your Ultimate NBA Fashion Destination!</h2>
+            <h4> 
+                At TheBuzzerBeater online shop, we believe that style and passion go hand in hand. Our mission is to bring the excitement of the NBA from the court to your closet, offering a curated collection of high-quality, trendsetting NBA-themed apparel and accessories.
+            </h4>
         </div>
-    }
+    </div>
+</div><br>
+
+<!-- Featured Products Section -->
+<div class="container" id="featured-products">
+        <div class="row pb-3">
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-3 col-sm-6 mb-3">
+                    <div class="card border-0 p-3 shadow rounded">
+                        <img src="@product.ImageUrl" class="card-img-top rounded" />
+                        <div class="card-body">
+                            <h5 class="card-title text-opacity-75 text-uppercase text-center">@product.Name</h5>
+
+                            <p class="text-opacity-75 text-uppercase text-center">
+                                Price: <span>@product.Price.ToString("c")</span>
+                            </p>
+                        </div>
+                        <div>
+                            <a asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
 </div>
+
+
+<!-- Special Offers Section -->
+<div class="container" id="special-offers">
+    <div class="row">
+        <div class="col-12">
+            <!-- Showcase special offers content -->
+        </div>
+    </div>
+</div>
+
+<!-- New Arrivals Section -->
+<div class="container" id="new-arrivals">
+    <div class="row">
+        <div class="col-12">
+            <!-- Highlight new arrivals content -->
+        </div>
+    </div>
+</div>
+
+<!-- Customer Reviews Section -->
+<div class="container" id="customer-reviews">
+    <div class="row">
+        <div class="col-12">
+            <!-- Display customer reviews or testimonials -->
+        </div>
+    </div>
+</div>
+
+
+    
+
+
+
 
 
