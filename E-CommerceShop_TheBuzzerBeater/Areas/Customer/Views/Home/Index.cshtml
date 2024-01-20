@@ -14,56 +14,95 @@
     </div>
 </div><br>
 
-<!-- Featured Products Section -->
-<div class="container" id="featured-products">
-        <div class="row pb-3">
-            @foreach (var product in Model)
-            {
-                <div class="col-lg-3 col-sm-6 mb-3">
-                    <div class="card border-0 p-3 shadow rounded">
-                        <img src="@product.ImageUrl" class="card-img-top rounded" />
-                        <div class="card-body">
-                            <h5 class="card-title text-opacity-75 text-uppercase text-center">@product.Name</h5>
-
-                            <p class="text-opacity-75 text-uppercase text-center">
-                                Price: <span>@product.Price.ToString("c")</span>
-                            </p>
-                        </div>
-                        <div>
-                            <a asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            }
+<div class="container mt-4">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="\images\site\Logo\Logo.png" class="d-block w-50 mx-auto" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="\images\site\17.jpg" class="d-block w-50 mx-auto" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="\images\site\2.png" class="d-block w-50 mx-auto" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="\images\site\5.png" class="d-block w-50 mx-auto" alt="Slide 4">
+            </div>
+            
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-visible">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-visible">Next</span>
+        </button>
+    </div>
 </div>
 
 
+
+
+@* <div class="container mt-4">
+<div class="embed-responsive embed-responsive-16by9">
+    <video class="embed-responsive-item" autoplay loop muted>
+            <source src="\images\site\mp4\1.mp4" type="video/mp4">
+    </video>
+</div>
+</div> *@
+<br>
+ <!-- Featured Products Section -->
+<div class="container mt-4" id="featured-products">
+    <div class="row pb-3">
+        @foreach (var product in Model)
+        {
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card border-0 p-3 shadow rounded">
+                    <img src="@product.ImageUrl" class="card-img-top rounded" />
+                    <div class="card-body">
+                        <h5 class="card-title text-opacity-75 text-center overflow-visible" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            @product.Name
+                        </h5><br>
+                        <p class="text-opacity-75 text-center">
+                            Price: <span>@product.Price.ToString("c")</span>
+                        </p>
+                    </div>
+                    <div>
+                        <a asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
 <!-- Special Offers Section -->
-<div class="container" id="special-offers">
+<div class="container mt-4" id="special-offers" style="background-color: #ffeeee;>
     <div class="row">
         <div class="col-12">
-            <!-- Showcase special offers content -->
+            <h2>Special Offers Section</h2>
         </div>
     </div>
 </div>
 
 <!-- New Arrivals Section -->
-<div class="container" id="new-arrivals">
+<div class="container mt-4" id="new-arrivals" style="background-color: #eefeff;">
     <div class="row">
         <div class="col-12">
-            <!-- Highlight new arrivals content -->
+            <h2>New Arrivals Section</h2>
         </div>
     </div>
 </div>
 
 <!-- Customer Reviews Section -->
-<div class="container" id="customer-reviews">
+<div class="container mt-4" id="customer-reviews" style="background-color: #fff0f0;>
     <div class="row">
         <div class="col-12">
-            <!-- Display customer reviews or testimonials -->
+            <h2>Customer Reviews Section</h2>
         </div>
     </div>
 </div>

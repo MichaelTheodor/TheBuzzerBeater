@@ -17,7 +17,6 @@ namespace TheBuzzerBeater.Models
         [ForeignKey("OrderHeaderId")]
         [ValidateNever]
         public OrderHeader OrderHeader { get; set; }
-
         [Required]
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
