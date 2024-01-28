@@ -113,8 +113,7 @@ namespace TheBuzzerBeater.Web.Areas.Identity.Pages.Account
             public string? FirstName {  get; set; }
             [Required]
             public string? Lastname { get; set; }
-            public string? Address1 { get; set; }
-            public string? Address2 { get; set; }
+            public string? StreetAddress { get; set; }
             public string? PostalCode { get; set; }
             public string? City { get; set; }
             public string? State { get; set; }
@@ -158,8 +157,7 @@ namespace TheBuzzerBeater.Web.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.Firstname = Input.FirstName;
                 user.Lastname = Input.Lastname;
-                user.Address1 = Input.Address1;
-                user.Address2 = Input.Address2;
+                user.StreetAddress = Input.StreetAddress;
                 user.PostalCode = Input.PostalCode;
                 user.City = Input.City;
                 user.State = Input.State;
@@ -198,7 +196,15 @@ namespace TheBuzzerBeater.Web.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole(StaticDetails.Role_Admin))
+                        {
+                            TempData["success"] = "New User Created Succesfully";
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
+                        
                         return LocalRedirect(returnUrl);
                     }
                 }

@@ -34,3 +34,16 @@ body {
     box-shadow:0 -2px;
 }
 
+.video-container {
+    min-height: 300px; /* Adjust the minimum height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+video {
+    max-width: 100%; /* Ensure the video does not exceed its container's width */
+    height: auto;
+}
+

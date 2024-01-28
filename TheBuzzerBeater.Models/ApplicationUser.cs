@@ -21,11 +21,7 @@ namespace TheBuzzerBeater.Models
 
 
         [Column(TypeName = "nvarchar(100)")]
-        public string? Address1 { get; set; }
-
-
-        [Column(TypeName = "nvarchar(100)")]
-        public string? Address2 { get; set; }
+        public string? StreetAddress { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         public string? PostalCode { get; set; }

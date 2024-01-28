@@ -12,8 +12,8 @@ using TheBuzzerBeater.DataAccess.Data;
 namespace TheBuzzerBeater.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240118182754_AddOrdeHeader and OrderDetail To Db")]
-    partial class AddOrdeHeaderandOrderDetailToDb
+    [Migration("20240126140307_InitialSetup")]
+    partial class InitialSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -323,18 +323,24 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         {
                             CategoryId = 12,
                             DisplayOrder = 12,
-                            Name = "Shoes"
+                            Name = "ΝΒΑ Retro Jerseys"
                         },
                         new
                         {
                             CategoryId = 13,
                             DisplayOrder = 13,
-                            Name = "Socks"
+                            Name = "Shoes"
                         },
                         new
                         {
                             CategoryId = 14,
                             DisplayOrder = 14,
+                            Name = "Socks"
+                        },
+                        new
+                        {
+                            CategoryId = 15,
+                            DisplayOrder = 15,
                             Name = "Stickers"
                         });
                 });
@@ -409,9 +415,6 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateOnly>("PaymentDueDate")
-                        .HasColumnType("date");
-
                     b.Property<string>("PaymentIntentId")
                         .HasColumnType("nvarchar(max)");
 
@@ -424,6 +427,9 @@ namespace TheBuzzerBeater.DataAccess.Migrations
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SessionId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ShippingDate")
@@ -486,7 +492,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 1,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "\\images\\products\\back - me - up - koupa - keramapli - nba - boston - celtics.jpg ",
+                            ImageUrl = "\\images\\products\\back-me-up-cup-nba-boston-celtics.jpg",
                             Name = "Nba Boston Celtics Cup",
                             Price = 6.0
                         },
@@ -495,7 +501,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 2,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-bucks",
+                            ImageUrl = "\\images\\products\\back-me-up-cup-nba-bucks.jpg",
                             Name = "Nba Milwaukee Bucks Cup",
                             Price = 6.0
                         },
@@ -504,7 +510,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 3,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-bulls",
+                            ImageUrl = "\\images\\products\\back-me-up-cup-nba-bulls.jpg",
                             Name = "Nba Chicago Bulls Cup",
                             Price = 6.0
                         },
@@ -513,7 +519,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 4,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-la-lakers (1)",
+                            ImageUrl = "\\images\\products\\back-me-up-cup-nba-la-lakers (1).jpg",
                             Name = "Nba Los Angeles Lakers Cup",
                             Price = 6.0
                         },
@@ -522,7 +528,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 5,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-la-lakers",
+                            ImageUrl = "\\images\\products\\back-me-up-cup-nba-la-lakers.jpg",
                             Name = "Nba Los Angeles Lakers Cup 2",
                             Price = 6.0
                         },
@@ -531,9 +537,261 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 6,
                             CategoryId = 10,
                             Description = "Ceramic mugs and cups with your favorite NBA team",
-                            ImageUrl = "\\images\\products\\back -me-up-koupa-keramapli-nba-logo",
+                            ImageUrl = "\\images\\products\\back-me-up-cup-nba-logo.jpg",
                             Name = "Nba Logo Cup",
                             Price = 5.0
+                        },
+                        new
+                        {
+                            ProductId = 7,
+                            CategoryId = 1,
+                            Description = "Quickly inflate your favorite ball with the Jordan Essentials Ball Pump. Its compact design makes it easy to carry, and ideal for supplementing the ball air.",
+                            ImageUrl = "\\images\\products\\Jordan Essential Ball Pump Intl.jpg",
+                            Name = "Jordan Essential Ball Pump Intl",
+                            Price = 19.989999999999998
+                        },
+                        new
+                        {
+                            ProductId = 8,
+                            CategoryId = 1,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Nike Essential Ball Pump Intl.jpg",
+                            Name = "Nike Essential Ball Pump Intl",
+                            Price = 16.989999999999998
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            CategoryId = 1,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Nike Hyperspeed Ball Pump Intl Swoosh.jpg",
+                            Name = "Nike Hyperspeed Ball Pump Intl Swoosh",
+                            Price = 24.5
+                        },
+                        new
+                        {
+                            ProductId = 10,
+                            CategoryId = 1,
+                            Description = "The Spalding dual action power pump comes with an attached extension hose. The 12” pump fits all types of valves (includes two different sized needles) and pumps air by pushing and pulling action.",
+                            ImageUrl = "\\images\\products\\Spalding 12' Dual Action Power Pump.jpg",
+                            Name = "Spalding 12' Dual Action Power Pump",
+                            Price = 18.0
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            CategoryId = 1,
+                            Description = "Dual action Aluminium pump with durable extension hose.",
+                            ImageUrl = "\\images\\products\\Wilson Nba Authentic Aluminum Pump.jpg",
+                            Name = "Wilson Nba Authentic Aluminum Pump",
+                            Price = 21.899999999999999
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            CategoryId = 1,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 23,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 24,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 25,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 26,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 27,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 28,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 29,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 30,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 31,
+                            CategoryId = 11,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 32,
+                            CategoryId = 12,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 33,
+                            CategoryId = 13,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 34,
+                            CategoryId = 14,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up NBA Brooklyn Nets Stickers.jpg",
+                            Name = "NBA Brooklyn Nets Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up NBA Chicago Bulls Stickers.png",
+                            Name = "NBA Chicago Bulls Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up NBA Dallas Mavericks Stickers.png",
+                            Name = "NBA Dallas Mavericks Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up NBA Golden State Stickers.jpg",
+                            Name = "NBA Golden State Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 17,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up NBA Milwauke Bucks Stickers.png",
+                            Name = "NBA Milwauke Bucks Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 18,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up NBA Stickers.jpg",
+                            Name = "NBA Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up Phoenix Suns Stickers.jpg",
+                            Name = "NBA Phoenix Suns Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 20,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up Pvc Stickers Nba Boston Celtics.jpg",
+                            Name = "Nba Boston Celtics Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 21,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up Pvc Stickers Ny Knics.jpg",
+                            Name = "NBA New York Knicks Stickers",
+                            Price = 0.90000000000000002
+                        },
+                        new
+                        {
+                            ProductId = 22,
+                            CategoryId = 15,
+                            Description = "A pack of two stickers featuring your favourite NBA team!",
+                            ImageUrl = "\\images\\products\\Back Me Up NBA Los Angeles Lakers Stickers.jpg",
+                            Name = "NBA Los Angeles Lakers Stickers",
+                            Price = 0.90000000000000002
                         });
                 });
 
@@ -568,12 +826,6 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Address1")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Address2")
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(100)");
 
@@ -592,6 +844,9 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("State")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(100)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
