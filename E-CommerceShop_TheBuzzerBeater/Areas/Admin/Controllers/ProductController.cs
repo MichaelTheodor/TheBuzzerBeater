@@ -110,18 +110,34 @@ namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
             }
         }
 
-        
-        
+
+
 
         #region API CALLS
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            var products = _unitOfWork.Product.GetAll(includeProperties: "Category")
+                .Select(p => new
+                {
+                    p.ProductId,
+                    p.Name,
+                    p.Description,
+                    p.Price,
+                    CategoryName = p.Category.Name // Access the Category property to get the Name
+                })
+                .ToList();
 
-            return Json(new { data = objProductList });
+            return Json(new { data = products });
         }
+
+
+
+        //List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+
+        //return Json(new { data = objProductList });
+
 
         [HttpDelete]
         public IActionResult Delete(int? productId)

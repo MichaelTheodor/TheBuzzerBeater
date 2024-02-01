@@ -33,13 +33,13 @@ namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
 
         public IActionResult Details(int orderId)
         {
-            OrderVM OrderVM = new()
+            OrderVM orderVM = new()
             {
                 OrderHeader = _unitOfWork.OrderHeader.Get(u => u.OrderHeaderId == orderId, includeProperties: "ApplicationUser"),
                 OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == orderId, includeProperties: "Product")
             };
 
-            return View(OrderVM);
+            return View(orderVM);
         }
         [HttpPost]
         [Authorize(Roles = StaticDetails.Role_Admin + "," + StaticDetails.Role_Employee)]
@@ -60,7 +60,7 @@ namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
             }
             if (!string.IsNullOrEmpty(OrderVM.OrderHeader.TrackingNumber))
             {
-                orderHeaderFromDb.Carrier = OrderVM.OrderHeader.TrackingNumber;
+                orderHeaderFromDb.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
             }
             _unitOfWork.OrderHeader.Update(orderHeaderFromDb);
             _unitOfWork.Save();
@@ -75,7 +75,7 @@ namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
         [Authorize(Roles = StaticDetails.Role_Admin + "," + StaticDetails.Role_Employee)]
         public IActionResult StartProcessing()
         {
-            _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.OrderHeaderId, StaticDetails.StatusInprocess);
+            _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.OrderHeaderId, StaticDetails.StatusInProcess);
             _unitOfWork.Save();
             TempData["Success"] = "Order Details Updated Succesfully.";
 
@@ -133,6 +133,7 @@ namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
 
             #region API CALLS
 
+
             [HttpGet]
         public IActionResult GetAll(string status)
         {
@@ -157,7 +158,7 @@ namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
                     objOrderHeaders = objOrderHeaders.Where(u => u.PaymentStatus == StaticDetails.PaymentStatusPending);
                     break;
                 case "inprocess":
-                    objOrderHeaders = objOrderHeaders.Where(u => u.OrderStatus == StaticDetails.StatusInprocess);
+                    objOrderHeaders = objOrderHeaders.Where(u => u.OrderStatus == StaticDetails.StatusInProcess);
                     break;
                 case "completed":
                     objOrderHeaders = objOrderHeaders.Where(u => u.OrderStatus == StaticDetails.StatusShipped);

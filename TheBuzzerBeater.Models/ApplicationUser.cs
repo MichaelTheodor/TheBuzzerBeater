@@ -13,11 +13,11 @@ namespace TheBuzzerBeater.Models
     {
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string Firstname { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string Lastname { get; set; }
+        public string LastName { get; set; }
 
 
         [Column(TypeName = "nvarchar(100)")]
@@ -35,5 +35,7 @@ namespace TheBuzzerBeater.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public string? Country { get; set; }
+        [NotMapped]
+        public string Role { get; set; }
     }
 }

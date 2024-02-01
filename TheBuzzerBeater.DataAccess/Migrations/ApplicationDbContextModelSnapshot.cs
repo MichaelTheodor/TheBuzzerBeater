@@ -595,78 +595,312 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         new
                         {
                             ProductId = 23,
-                            CategoryId = 11,
-                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
-                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
-                            Name = "Wilson NBA DVR Pump Kit",
-                            Price = 18.600000000000001
+                            CategoryId = 2,
+                            Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
+                            ImageUrl = "\\images\\products\\Jordan Unisex Shooter Sleeves.jpg",
+                            Name = "Jordan Unisex Shooter Sleeves",
+                            Price = 61.990000000000002
                         },
                         new
                         {
                             ProductId = 24,
-                            CategoryId = 11,
-                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
-                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
-                            Name = "Wilson NBA DVR Pump Kit",
-                            Price = 18.600000000000001
+                            CategoryId = 2,
+                            Description = "If you're wondering why you need these COMPRESSPORT Armforce Ultralight Sleeves if you're doing your favorite sports when the weather gets colder, the answer is to provide you with the thermoregulation you need when exposed to cold air. Featuring gentle compression properties, they precisely target core muscles for stimulated blood flow and support. For running, cycling or hiking these sleeves will hug your hands while protecting and keeping them warm.",
+                            ImageUrl = "\\images\\products\\COMPRESSPORT Armforce Ultralight.jpg",
+                            Name = "COMPRESSPORT Armforce Ultralight",
+                            Price = 28.0
                         },
                         new
                         {
                             ProductId = 25,
-                            CategoryId = 11,
-                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
-                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
-                            Name = "Wilson NBA DVR Pump Kit",
-                            Price = 18.600000000000001
+                            CategoryId = 2,
+                            Description = "Pro Elite Sleeves 2.0, are made with Dri-FIT technology removing sweat for a dry and comfortable feel. Their preformed construction ensures enhanced mobility, while flat seams eliminate friction and irritation.",
+                            ImageUrl = "\\images\\products\\Nike Pro Elite SLeeves 2.0.jpg",
+                            Name = "Nike Pro Elite SLeeves 2.0 ",
+                            Price = 29.899999999999999
                         },
                         new
                         {
                             ProductId = 26,
-                            CategoryId = 11,
-                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
-                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
-                            Name = "Wilson NBA DVR Pump Kit",
-                            Price = 18.600000000000001
+                            CategoryId = 2,
+                            Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
+                            ImageUrl = "\\images\\products\\Nike Pro Elbow Sleeve 3.0.jpg",
+                            Name = "Nike Pro Elbow Sleeve 3.0",
+                            Price = 22.949999999999999
                         },
                         new
                         {
                             ProductId = 27,
-                            CategoryId = 11,
-                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
-                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
-                            Name = "Wilson NBA DVR Pump Kit",
-                            Price = 18.600000000000001
+                            CategoryId = 2,
+                            Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
+                            ImageUrl = "\\images\\products\\Nike Pro Ankle Sleeve 3.0.jpg",
+                            Name = "Nike Pro Ankle Sleeve 3.0",
+                            Price = 21.989999999999998
                         },
                         new
                         {
                             ProductId = 28,
-                            CategoryId = 11,
-                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
-                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
-                            Name = "Wilson NBA DVR Pump Kit",
-                            Price = 18.600000000000001
+                            CategoryId = 2,
+                            Description = "Utilised by the best in the game to improve performance, these form fitting sleeves provide superior support and protection. The compression fit allows a wide range of motion and muscle support. The Dri-FIT fabric wicks moisture away for comfort.Sold in pairs",
+                            ImageUrl = "\\images\\products\\Jordan Unisex Shooter Sleeves.jpg",
+                            Name = "Nike NBA 2.0 Basketball Shooter Sleeve",
+                            Price = 34.5
                         },
                         new
                         {
                             ProductId = 29,
-                            CategoryId = 11,
-                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
-                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
-                            Name = "Wilson NBA DVR Pump Kit",
-                            Price = 18.600000000000001
+                            CategoryId = 2,
+                            Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
+                            ImageUrl = "\\images\\products\\Mcdavid Hex Shooter Arm SLeeve.jpg",
+                            Name = "Mcdavid Hex Shooter Arm SLeeve",
+                            Price = 30.0
                         },
                         new
                         {
                             ProductId = 30,
-                            CategoryId = 11,
-                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
-                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
-                            Name = "Wilson NBA DVR Pump Kit",
-                            Price = 18.600000000000001
+                            CategoryId = 2,
+                            Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
+                            ImageUrl = "\\images\\products\\Mcdavid Power Shooter Arm SLeeve.jpg",
+                            Name = "Mcdavid Power Shooter Arm SLeeve",
+                            Price = 27.989999999999998
                         },
                         new
                         {
                             ProductId = 31,
+                            CategoryId = 2,
+                            Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
+                            ImageUrl = "\\images\\products\\MCDAVID Elite Compression Arm Sleeve.jpg",
+                            Name = "MCDAVID Elite Compression Arm Sleeve",
+                            Price = 24.989999999999998
+                        },
+                        new
+                        {
+                            ProductId = 32,
+                            CategoryId = 3,
+                            Description = "Nike Playground 8P 2.0 G Antetokounmpo Deflated",
+                            ImageUrl = "\\images\\products\\Nike Playground 8P 2.0 G Antetokounmpo Deflated.jpg",
+                            Name = "Nike Playground 8P 2.0 G Antetokounmpo Deflated",
+                            Price = 33.5
+                        },
+                        new
+                        {
+                            ProductId = 33,
+                            CategoryId = 3,
+                            Description = "The SKLZ Control basketball is the perfect training ball to help athletes improve their dribbling skills. It is made of high quality synthetic leather for indoor and outdoor training.",
+                            ImageUrl = "\\images\\products\\SKLZ Lightweight Control Basketball Ball.jpg",
+                            Name = "SKLZ Lightweight Control Basketball Ball",
+                            Price = 39.899999999999999
+                        },
+                        new
+                        {
+                            ProductId = 34,
+                            CategoryId = 3,
+                            Description = "Nike All Court 8P Z Williamson Deflated",
+                            ImageUrl = "\\images\\products\\Nike All Court 8P Z Williamson Deflated.jpg",
+                            Name = "Nike All Court 8P Z Williamson Deflated",
+                            Price = 51.5
+                        },
+                        new
+                        {
+                            ProductId = 35,
+                            CategoryId = 3,
+                            Description = "Nike Basketball 8P Energy Deflated",
+                            ImageUrl = "\\images\\products\\Nike Basketball 8P Energy Deflated.jpg",
+                            Name = "Nike Basketball 8P Energy Deflated",
+                            Price = 57.149999999999999
+                        },
+                        new
+                        {
+                            ProductId = 36,
+                            CategoryId = 3,
+                            Description = "Nike Elite Tournament 8P Deflated",
+                            ImageUrl = "\\images\\products\\Nike Elite Tournament 8P Deflated.jpg",
+                            Name = "Nike Elite Tournament 8P Deflated",
+                            Price = 68.900000000000006
+                        },
+                        new
+                        {
+                            ProductId = 37,
+                            CategoryId = 3,
+                            Description = "Wilson Nba Official Game Ball Bskt Retail",
+                            ImageUrl = "\\images\\products\\Wilson Nba Official Game Ball Bskt Retail.jpg",
+                            Name = "Wilson Nba Official Game Ball Bskt Retail",
+                            Price = 259.0
+                        },
+                        new
+                        {
+                            ProductId = 38,
+                            CategoryId = 3,
+                            Description = "Nike Championship 8P Deflated",
+                            ImageUrl = "\\images\\products\\Nike Championship 8P Deflated.jpg",
+                            Name = "Nike Championship 8P Deflated",
+                            Price = 104.0
+                        },
+                        new
+                        {
+                            ProductId = 39,
+                            CategoryId = 3,
+                            Description = "Nike Basketball 8P Prm Energy Deflated",
+                            ImageUrl = "\\images\\products\\Nike Playground 8P 2.0 G Antetokounmpo Deflated.jpg",
+                            Name = "Nike Basketball 8P Prm Energy Deflated",
+                            Price = 57.509999999999998
+                        },
+                        new
+                        {
+                            ProductId = 40,
+                            CategoryId = 3,
+                            Description = "Nike Skills",
+                            ImageUrl = "\\images\\products\\Nike Skills.jpg",
+                            Name = "Nike Skills",
+                            Price = 13.5
+                        },
+                        new
+                        {
+                            ProductId = 41,
+                            CategoryId = 3,
+                            Description = "Nike Everyday All Court 8P Graphic Deflated",
+                            ImageUrl = "\\images\\products\\Nike Everyday All Court 8P Graphic Deflated.jpg",
+                            Name = "Nike Everyday All Court 8P Graphic Deflated",
+                            Price = 39.899999999999999
+                        },
+                        new
+                        {
+                            ProductId = 42,
+                            CategoryId = 3,
+                            Description = "Nike Ultimate 2.0 8P Graphic Deflated",
+                            ImageUrl = "\\images\\products\\Nike Ultimate 2.0 8P Graphic Deflated.jpg",
+                            Name = "Nike Ultimate 2.0 8P Graphic Deflated",
+                            Price = 44.899999999999999
+                        },
+                        new
+                        {
+                            ProductId = 43,
+                            CategoryId = 4,
+                            Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
+                            ImageUrl = "\\images\\products\\Wilson NBA Milwaukee Bucks Mini Hoop.jpg",
+                            Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
+                            Price = 27.399999999999999
+                        },
+                        new
+                        {
+                            ProductId = 44,
+                            CategoryId = 4,
+                            Description = "Basketball Dashboard set",
+                            ImageUrl = "\\images\\products\\Amila Basketball Dashboard 16Mm.jpg",
+                            Name = "Amila Basketball Dashboard 16Mm",
+                            Price = 115.90000000000001
+                        },
+                        new
+                        {
+                            ProductId = 45,
+                            CategoryId = 4,
+                            Description = "Amila Basketball With Hoop Net 2.27-3.05M",
+                            ImageUrl = "\\images\\products\\Amila Basketball With Hoop Net 2.27-3.05M.jpg",
+                            Name = "Amila Basketball With Hoop Net 2.27-3.05M",
+                            Price = 279.89999999999998
+                        },
+                        new
+                        {
+                            ProductId = 46,
+                            CategoryId = 4,
+                            Description = "Amila handheld basket with adjustable height for family play. Ideal for indoor and outdoor use. Dashboard made of durable polycarbonate material with steel edging. The vinyl base is filled with water or sand for guaranteed stability in play.",
+                            ImageUrl = "\\images\\products\\Amila Basket Semi-Professional, Thickness 3.0Mm.jpg",
+                            Name = "Amila Basket Semi-Professional, Thickness 3.0Mm.jpg",
+                            Price = 374.89999999999998
+                        },
+                        new
+                        {
+                            ProductId = 47,
+                            CategoryId = 4,
+                            Description = "SKLZ Pro Mini Hoop System",
+                            ImageUrl = "\\images\\products\\SKLZ Pro Mini Hoop System.jpg",
+                            Name = "SKLZ Pro Mini Hoop System",
+                            Price = 219.94999999999999
+                        },
+                        new
+                        {
+                            ProductId = 48,
+                            CategoryId = 4,
+                            Description = "Portable basketball from the Highlight series of Spalding. With acrylic board width 42 '' and variable height from 2.28 to 3.05 meters so that both the youngest and the oldest basketball fans can enjoy the game!",
+                            ImageUrl = "\\images\\products\\Spalding 2015 Highlight Portable 42'' Acrylic.jpg",
+                            Name = "Spalding 2015 Highlight Portable 42'' Acrylic",
+                            Price = 435.60000000000002
+                        },
+                        new
+                        {
+                            ProductId = 49,
+                            CategoryId = 4,
+                            Description = "Amila Backboard with three-colour net.",
+                            ImageUrl = "\\images\\products\\Amila Backboard 122 x 85 cm 49197.jpg",
+                            Name = "Amila Backboard 122 x 85 cm 49197",
+                            Price = 219.90000000000001
+                        },
+                        new
+                        {
+                            ProductId = 50,
+                            CategoryId = 4,
+                            Description = "Amila Basketball Hoop with Springs & Net.",
+                            ImageUrl = "\\images\\products\\Amila Basketball Hoop with Springs & Net.jpg",
+                            Name = "Amila Basketball Hoop with Springs & Net",
+                            Price = 67.900000000000006
+                        },
+                        new
+                        {
+                            ProductId = 51,
+                            CategoryId = 4,
+                            Description = "Basket wreath with steel tube and spring for pressure absorption from ball hitting and hanging by players. Its diameter is 45cm and includes net in the package. Suitable for every dashboard and basketball to play on the court, garden or cottage.",
+                            ImageUrl = "\\images\\products\\Amila Basketball Hoop.jpg",
+                            Name = "Amila Basketball Hoop",
+                            Price = 64.900000000000006
+                        },
+                        new
+                        {
+                            ProductId = 52,
+                            CategoryId = 5,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 64,
+                            CategoryId = 6,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 74,
+                            CategoryId = 7,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 84,
+                            CategoryId = 8,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 94,
+                            CategoryId = 9,
+                            Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
+                            ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
+                            Name = "Wilson NBA DVR Pump Kit",
+                            Price = 18.600000000000001
+                        },
+                        new
+                        {
+                            ProductId = 104,
                             CategoryId = 11,
                             Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                             ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
@@ -675,7 +909,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         },
                         new
                         {
-                            ProductId = 32,
+                            ProductId = 114,
                             CategoryId = 12,
                             Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                             ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
@@ -684,7 +918,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         },
                         new
                         {
-                            ProductId = 33,
+                            ProductId = 124,
                             CategoryId = 13,
                             Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                             ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
@@ -693,7 +927,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         },
                         new
                         {
-                            ProductId = 34,
+                            ProductId = 134,
                             CategoryId = 14,
                             Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                             ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
@@ -829,11 +1063,11 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 

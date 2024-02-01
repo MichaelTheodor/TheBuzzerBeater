@@ -19,40 +19,60 @@ namespace TheBuzzerBeater.DataAccess.Repository
             _db = db;
             this.dbSet = _db.Set<T>();
             //_db.Categories == dbSet
-            _db.Products.Include(u => u.Category).Include(u=> u.CategoryId);
+            //_db.Products.Include(u => u.Category).Include(u=> u.CategoryId);
         }
         public void Add(T entity)
         {
             dbSet.Add(entity);
         }
 
+        //public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
+        //{
+
+        //    //IQueryable<T> query;
+        //    //if (tracked) 
+        //    //{
+        //    //   query = dbSet;
+        //    //}
+        //    //else
+        //    //{
+        //    //     query = dbSet.AsNoTracking();
+        //    //}
+
+        //    //query = query.Where(filter);
+        //    //if (!string.IsNullOrEmpty(includeProperties))
+        //    //{
+        //    //    foreach (var includeProp in includeProperties
+        //    //        .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+        //    //    {
+        //    //        query = query.Include(includeProp);
+        //    //    }
+        //    //}
+        //    //return query.FirstOrDefault();
+
+        //}
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
+            IQueryable<T> query = tracked ? dbSet : dbSet.AsNoTracking();
 
-            IQueryable<T> query;
-            if (tracked) 
-            {
-               query = dbSet;
-            }
-            else
-            {
-                 query = dbSet.AsNoTracking();
-            }
-            
             query = query.Where(filter);
+
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach (var includeProp in includeProperties
-                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(includeProp);
+                    // Exclude the foreign key property from Include
+                    if (includeProp != "CategoryId")
+                    {
+                        query = query.Include(includeProp);
+                    }
                 }
             }
-            return query.FirstOrDefault();
 
+            return query.FirstOrDefault();
         }
-        
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null) //var products = repository.GetAll(filter: null, includeProperties: "Category");
+
         {
             IQueryable<T> query = dbSet;
             if (filter != null) 
@@ -64,7 +84,7 @@ namespace TheBuzzerBeater.DataAccess.Repository
                 foreach(var includeProp in includeProperties
                     .Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries)) 
                 { 
-                    query=query.Include(includeProp);
+                    query=query.Include(includeProp.Trim());
                 }
             }
             return query.ToList();

@@ -1,10 +1,13 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] TheBuzzerBeater</title>
+    <link rel="icon" type="image/x-icon" href="/images/site/ico/Logo.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/E_CommerceShop_TheBuzzerBeater.styles.css" asp-append-version="true" />
@@ -16,7 +19,10 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TheBuzzerBeater</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    
+                    <img src="/images/site/Logo/Logo.png" style="width:50px" />
+                    </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -47,15 +53,20 @@
                                     <li>
                                         <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">CREATE USER</a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">MANAGE USER</a>
+                                    </li>
 
                                 </ul>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                                <i class="bi bi-cart"></i> &nbsp;
-                            </a>
-                        </li>
+                       
+                            <li class="nav-item">
+                                <a class="nav-link active" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                    @await Component.InvokeAsync("ShoppingCart") 
+                                </a>
+                            </li>
+                        
                     </ul>
                     <partial name ="_LoginPartial" />
                     @* <form class="d-flex">

@@ -29,6 +29,8 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+            
+
             ShoppingCartVM = new()
             {
                 ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId,
@@ -58,8 +60,8 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
             ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
 
-            ShoppingCartVM.OrderHeader.FirstName = ShoppingCartVM.OrderHeader.ApplicationUser.Firstname;
-            ShoppingCartVM.OrderHeader.LastName = ShoppingCartVM.OrderHeader.ApplicationUser.Lastname;
+            ShoppingCartVM.OrderHeader.FirstName = ShoppingCartVM.OrderHeader.ApplicationUser.FirstName;
+            ShoppingCartVM.OrderHeader.LastName = ShoppingCartVM.OrderHeader.ApplicationUser.LastName;
             ShoppingCartVM.OrderHeader.StreetAddress = ShoppingCartVM.OrderHeader.ApplicationUser.StreetAddress;
             ShoppingCartVM.OrderHeader.PostalCode = ShoppingCartVM.OrderHeader.ApplicationUser.PostalCode;
             ShoppingCartVM.OrderHeader.City = ShoppingCartVM.OrderHeader.ApplicationUser.City;
@@ -170,8 +172,10 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
                 _unitOfWork.OrderHeader.UpdateStatus(id, StaticDetails.StatusApproved, StaticDetails.PaymentStatusApproved);
                 _unitOfWork.Save();
 			}
+            HttpContext.Session.Clear();
 
-            List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u=> u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
+            List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
+                .GetAll(u=> u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
 
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
             _unitOfWork.Save();
@@ -191,11 +195,14 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
         public IActionResult Minus(int cartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId);
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId, tracked: true); //check tracked
             if (cartFromDb.Count <= 1)
             {
                 //remove that from cart
-                _unitOfWork.ShoppingCart.Remove(cartFromDb);
+                _unitOfWork.ShoppingCart.Remove(cartFromDb); //this was at line 205
+                HttpContext.Session.SetInt32(StaticDetails.SessionCart, _unitOfWork.ShoppingCart
+                .GetAll(u => u.ApplicationUserId == cartFromDb.ApplicationUserId).Count() - 1);
+                
             }
             else
             {
@@ -209,10 +216,16 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
         public IActionResult Remove(int cartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId);
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId,tracked : true); //check tracked
 
-            _unitOfWork.ShoppingCart.Remove(cartFromDb);
+            _unitOfWork.ShoppingCart.Remove(cartFromDb); //this was at line 226
+
+            HttpContext.Session.SetInt32(StaticDetails.SessionCart, _unitOfWork.ShoppingCart
+             .GetAll(u => u.ApplicationUserId == cartFromDb.ApplicationUserId).Count() - 1);
+
+            
             _unitOfWork.Save();
+            
             return RedirectToAction(nameof(Index));
         }
 

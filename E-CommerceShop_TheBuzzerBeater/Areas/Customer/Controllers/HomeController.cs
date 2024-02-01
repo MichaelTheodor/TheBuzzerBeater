@@ -4,6 +4,7 @@ using System.Diagnostics;
 using TheBuzzerBeater.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using TheBuzzerBeater.Utilities;
 
 namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 {
@@ -21,6 +22,7 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+            
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
 
             return View(productList);
@@ -53,15 +55,16 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
                 //cart exists
                 cartFromDb.Count+= shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.Save();
             }
             else
             {
                 //add cart record
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
+                HttpContext.Session.SetInt32(StaticDetails.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
+                _unitOfWork.Save();
             }
             TempData["success"] = "Cart updated succesfully";
-
-            _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
         }

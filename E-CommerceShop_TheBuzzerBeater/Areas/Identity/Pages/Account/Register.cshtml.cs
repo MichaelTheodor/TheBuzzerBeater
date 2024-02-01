@@ -125,12 +125,7 @@ namespace TheBuzzerBeater.Web.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!_roleManager.RoleExistsAsync(StaticDetails.Role_Customer).GetAwaiter().GetResult())
-            {
-                _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_Customer)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_Employee)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticDetails.Role_Admin)).GetAwaiter().GetResult();
-            }
+           
 
             Input = new()
             {
@@ -155,8 +150,8 @@ namespace TheBuzzerBeater.Web.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                user.Firstname = Input.FirstName;
-                user.Lastname = Input.Lastname;
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.Lastname;
                 user.StreetAddress = Input.StreetAddress;
                 user.PostalCode = Input.PostalCode;
                 user.City = Input.City;

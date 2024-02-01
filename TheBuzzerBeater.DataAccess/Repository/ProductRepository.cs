@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -18,12 +19,14 @@ namespace TheBuzzerBeater.DataAccess.Repository
             _db = db;
         }
 
-        
 
         public void Update(Product obj)
         {
-            var objFromDb =_db.Products.FirstOrDefault(u=>u.ProductId == obj.ProductId);
-            if (objFromDb != null) 
+            var objFromDb = _db.Products
+                .Include(p => p.Category) // Include the Category navigation property
+                .FirstOrDefault(u => u.ProductId == obj.ProductId);
+
+            if (objFromDb != null)
             {
                 objFromDb.Name = obj.Name;
                 objFromDb.Description = obj.Description;
@@ -34,8 +37,25 @@ namespace TheBuzzerBeater.DataAccess.Repository
                 {
                     objFromDb.ImageUrl = obj.ImageUrl;
                 }
-
             }
         }
     }
+    //public void Update(Product obj)
+    //{
+    //    var objFromDb =_db.Products.FirstOrDefault(u=>u.ProductId == obj.ProductId);
+    //    if (objFromDb != null) 
+    //    {
+    //        objFromDb.Name = obj.Name;
+    //        objFromDb.Description = obj.Description;
+    //        objFromDb.Price = obj.Price;
+    //        objFromDb.CategoryId = obj.CategoryId;
+
+    //        if (obj.ImageUrl != null)
+    //        {
+    //            objFromDb.ImageUrl = obj.ImageUrl;
+    //        }
+
+    //    }
+    //}
 }
+

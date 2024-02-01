@@ -1,11 +1,9 @@
 ﻿@model IEnumerable<Product>
 
 
-<!-- Header Section -->
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <!-- Welcome message, logo, and introductory content -->
             <h2 class="text-center mt-4 mb-4">Welcome to TheBuzzerBeater – Your Ultimate NBA Fashion Destination!</h2>
         </div>
     </div>
@@ -43,22 +41,12 @@
 </div>
 <br>
 
-
-
-<br>
-<!-- Featured Products Section -->
 <div class="container mt-4" id="featured-products">
     <h4>
         At TheBuzzerBeater online shop, we believe that style and passion go hand in hand. Our mission is to bring the excitement of the NBA from the court to your closet, offering a curated collection of high-quality, trendsetting NBA-themed apparel and accessories.
     </h4><br>
 
-   @*  <div class="container mt-4">
-        <div class="embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item align-content-lg-center" autoplay loop muted>
-                <source src="\images\site\mp4\1.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div> *@<div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12 video-container">
                 <div class="embed-responsive embed-responsive-16by9">
@@ -87,27 +75,31 @@
 
     <h4>Explore Our Exclusive Collection:</h4> <br> <br>
 
-    <div class="row pb-3">
-        @foreach (var product in Model)
+    <div class="row pb-3 text-primary">  
+        @foreach (var group in Model.GroupBy(u => u.Category.Name))
         {
-            <div class="col-lg-3 col-sm-6 mb-3">
-                <div class="card border-0 p-3 shadow rounded">
-                    <img src="@product.ImageUrl" class="card-img-top rounded" />
-                    <div class="card-body">
-                        <p class="card-title text-opacity-75 text-center overflow-hidden" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                            @product.Name
-                        </p><br>
-                        <p class="text-opacity-75 text-center">
-                            Price: <span>@product.Price.ToString("c")</span>
-                        </p>
-                    </div>
-                    <div>
-                        <a asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
-                            Details
-                        </a>
+            <h2>@group.Key</h2>
+            @foreach (var product in group)
+            {
+                <div class="col-lg-3 col-sm-6 mb-3">
+                    <div class="card border-0 p-3 shadow rounded">
+                        <img src="@product.ImageUrl" class="card-img-top rounded" />
+                        <div class="card-body">
+                            <p class="card-title text-opacity-75 text-center overflow-hidden" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                @product.Name
+                            </p><br>
+                            <p class="text-opacity-75 text-center">
+                                Price: <span>@product.Price.ToString("c")</span>
+                            </p>
+                        </div>
+                        <div>
+                            <a asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </div>

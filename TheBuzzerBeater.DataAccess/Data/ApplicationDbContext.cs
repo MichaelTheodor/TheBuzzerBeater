@@ -1,10 +1,9 @@
 ﻿using TheBuzzerBeater.Models;
-
-
 using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 
 
@@ -25,6 +24,13 @@ namespace TheBuzzerBeater.DataAccess.Data
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            
+
+            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -33,7 +39,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                 new Category { CategoryId = 1, Name = "Air Pumps", DisplayOrder = 1}, //ok
                 new Category { CategoryId = 2, Name = "Arm Sleeves", DisplayOrder = 2 }, //check
                 new Category { CategoryId = 3, Name = "Balls", DisplayOrder = 3 }, //check
-                new Category { CategoryId = 4, Name = "Basket", DisplayOrder = 4 },
+                new Category { CategoryId = 4, Name = "Basket", DisplayOrder = 4 },//check
                 new Category { CategoryId = 5, Name = "Basketball Nets", DisplayOrder = 5 },
                 new Category { CategoryId = 6, Name = "Beanies", DisplayOrder = 6 },
                 new Category { CategoryId = 7, Name = "Hats", DisplayOrder = 7 },
@@ -308,7 +314,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Description = "Nike Basketball 8P Prm Energy Deflated",
                     Price = 57.51,
                     CategoryId = 3,
-                    ImageUrl = @"\images\products\Nike Playground 8P 2.0 G Antetokounmpo Deflated.jpg"
+                    ImageUrl = @"\images\products\Nike Basketball 8P Prm Energy Deflated.jpg"
                 },
                 new Product
                 {
@@ -350,96 +356,78 @@ namespace TheBuzzerBeater.DataAccess.Data
                 new Product 
                 {
                     ProductId = 44,
-                    Name = "Wilson Nba Team Mini Hoop Bro Nets",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
+                    Name = "Amila Basketball Dashboard 16Mm",
+                    Description = "Basketball Dashboard set",
+                    Price = 115.90,
                     CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson Nba Team Mini Hoop Bro Nets.jpg"
+                    ImageUrl = @"\images\products\Amila Basketball Dashboard 16Mm.jpg"
                 },
                 new Product
                 {
                     ProductId = 45,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
+                    Name = "Amila Basketball With Hoop Net 2.27-3.05M",
+                    Description = "Amila Basketball With Hoop Net 2.27-3.05M",
+                    Price = 279.90,
                     CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
+                    ImageUrl = @"\images\products\Amila Basketball With Hoop Net 2.27-3.05M.jpg"
                 },
                 new Product
                 {
                     ProductId = 46,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
+                    Name = "Amila Basket Semi-Professional, Thickness 3.0Mm.jpg",
+                    Description = "Amila handheld basket with adjustable height for family play. Ideal for indoor and outdoor use. Dashboard made of durable polycarbonate material with steel edging. The vinyl base is filled with water or sand for guaranteed stability in play.",
+                    Price = 374.90,
                     CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
+                    ImageUrl = @"\images\products\Amila Basket Semi-Professional, Thickness 3.0Mm.jpg"
                 },
                 new Product
                 {
                     ProductId = 47,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
+                    Name = "SKLZ Pro Mini Hoop System",
+                    Description = "SKLZ Pro Mini Hoop System",
+                    Price = 219.95,
                     CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
+                    ImageUrl = @"\images\products\SKLZ Pro Mini Hoop System.jpg"
                 },
                 new Product
                 {
                     ProductId = 48,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
+                    Name = "Spalding 2015 Highlight Portable 42'' Acrylic",
+                    Description = "Portable basketball from the Highlight series of Spalding. With acrylic board width 42 '' and variable height from 2.28 to 3.05 meters so that both the youngest and the oldest basketball fans can enjoy the game!",
+                    Price = 435.60,
                     CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
+                    ImageUrl = @"\images\products\Spalding 2015 Highlight Portable 42'' Acrylic.jpg"
                 },
                 new Product
                 {
                     ProductId = 49,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
+                    Name = "Amila Backboard 122 x 85 cm 49197",
+                    Description = "Amila Backboard with three-colour net.",
+                    Price = 219.90,
                     CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
+                    ImageUrl = @"\images\products\Amila Backboard 122 x 85 cm 49197.jpg"
                 },
                 new Product
                 {
                     ProductId = 50,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
+                    Name = "Amila Basketball Hoop with Springs & Net",
+                    Description = "Amila Basketball Hoop with Springs & Net.",
+                    Price = 67.90,
                     CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
+                    ImageUrl = @"\images\products\Amila Basketball Hoop with Springs & Net.jpg"
                 },
                 new Product
                 {
                     ProductId = 51,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
+                    Name = "Amila Basketball Hoop",
+                    Description = "Basket wreath with steel tube and spring for pressure absorption from ball hitting and hanging by players. Its diameter is 45cm and includes net in the package. Suitable for every dashboard and basketball to play on the court, garden or cottage.",
+                    Price = 64.90,
                     CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
-                },
-                new Product
-                {
-                    ProductId = 52,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
-                    CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
-                },
-                new Product
-                {
-                    ProductId = 53,
-                    Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
-                    Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
-                    Price = 27.40,
-                    CategoryId = 4,
-                    ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
+                    ImageUrl = @"\images\products\Amila Basketball Hoop.jpg"
                 },
                 new Product // Basketball Nets
                 {
-                    ProductId = 54,
+                    ProductId = 52,
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,

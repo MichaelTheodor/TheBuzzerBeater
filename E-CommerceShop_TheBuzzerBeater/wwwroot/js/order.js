@@ -5,32 +5,26 @@ $(function () {
     if (url.includes("inprocess")) {
         loadDataTable("inprocess");
     }
-    else
-    {
-        if (url.includes("completed")) {
-            loadDataTable("completed");
-        }
-        else {
-            if (url.includes("pending")) {
-                loadDataTable("pending");
-            }
-            else {
-                if (url.includes("approved")) {
-                    loadDataTable("approved");
-                }
-                else {
-                    loadDataTable("all");
-                }
-            }
-        }
+    else if (url.includes("completed")) {
+        loadDataTable("completed");
+    }
+    else if (url.includes("pending")) {
+        loadDataTable("pending");
+    }
+    else if (url.includes("approved"))
+    {         
+        loadDataTable("approved");
+    }
+    else {
+        loadDataTable("all");
     }
 });
 
 function loadDataTable(status) {
     dataTable = $('#tblData').DataTable({
-        "ajax": { url: '/admin/order/getall?status='+status },
+        "ajax": { url: '/admin/order/getall?status=' + status },
         "columns": [
-            { data: 'orderHeaderId', "width": "5%" },
+            { data: 'orderHeaderId', "width": "5%" }, //id
             { data: 'firstName', "width": "15%" },
             { data: 'lastName', "width": "15%" },
             { data: 'phoneNumber', "width": "15%" },
@@ -38,13 +32,12 @@ function loadDataTable(status) {
             { data: 'orderStatus', "width": "10%" },
             { data: 'orderTotal', "width": "10%" },
             {
-                data: 'orderId',
-                "render": function (data) {
+                data: 'orderHeaderId',
+                "render": function (data) {                  
                     return `<div class="w-75 btn-group" role="group">
                     <a href="/Admin/Order/details?orderId=${data}" class="btn btn-primary mx-2">
                             <i class="bi bi-pencil-square"></i>
                     </a>
-                    
                             </div>`
                 },
                 "width": "10%"
