@@ -366,6 +366,8 @@ namespace TheBuzzerBeater.DataAccess.Migrations
 
                     b.HasIndex("OrderHeaderId");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("OrderDetails");
                 });
 
@@ -741,7 +743,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                             ProductId = 39,
                             CategoryId = 3,
                             Description = "Nike Basketball 8P Prm Energy Deflated",
-                            ImageUrl = "\\images\\products\\Nike Playground 8P 2.0 G Antetokounmpo Deflated.jpg",
+                            ImageUrl = "\\images\\products\\Nike Basketball 8P Prm Energy Deflated.jpg",
                             Name = "Nike Basketball 8P Prm Energy Deflated",
                             Price = 57.509999999999998
                         },
@@ -1142,7 +1144,15 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TheBuzzerBeater.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("OrderHeader");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("TheBuzzerBeater.Models.OrderHeader", b =>

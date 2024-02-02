@@ -15,7 +15,7 @@ using TheBuzzerBeater.Utilities;
 namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = StaticDetails.Role_Admin)]
+    [Authorize(Roles = StaticDetails.Role_Admin + "," + StaticDetails.Role_Customer + "," + StaticDetails.Role_Employee)]
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

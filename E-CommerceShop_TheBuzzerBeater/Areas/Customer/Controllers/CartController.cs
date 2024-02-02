@@ -108,15 +108,18 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 			_unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
             _unitOfWork.Save();
 
-            foreach(var cart in ShoppingCartVM.ShoppingCartList)
+            foreach (var cart in ShoppingCartVM.ShoppingCartList)
             {
-                OrderDetail orderDetail = new() {
+                OrderDetail orderDetail = new()
+                {
                     ProductId = cart.ProductId,
-                    OrderHeaderId = ShoppingCartVM.OrderHeader.OrderHeaderId, 
+                    OrderHeaderId = ShoppingCartVM.OrderHeader.OrderHeaderId,
                     Price = cart.Price,
                     Count = cart.Count
                 };
                 _unitOfWork.OrderDetail.Add(orderDetail);
+
+            }
                 _unitOfWork.Save();
 
                 var domain = "https://localhost:7164/";
@@ -151,22 +154,27 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
                 _unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.OrderHeaderId,session.Id,session.PaymentIntentId);
                 _unitOfWork.Save();
 
-                Response.Headers.Add("Location", session.Url);
-                return new StatusCodeResult(303);
+            //Response.Headers.Add("Location", session.Url);
+            //return new StatusCodeResult(303);
+            //return RedirectToAction(nameof(OrderConfirmation),new { id=ShoppingCartVM.OrderHeader.OrderHeaderId});
+            TempData["Success"] = "Order Placed Successfully.";
 
-			}
-
-			return RedirectToAction(nameof(OrderConfirmation),new { id=ShoppingCartVM.OrderHeader.OrderHeaderId});
+            // Redirect the user to the Stripe checkout page
+            return Redirect(session.Url);
+           
 		}
 
         public IActionResult OrderConfirmation(int id) 
         {
-            OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(u =>u.OrderHeaderId == id, includeProperties: "ApplicationUser"); 
-
+            OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(u =>u.OrderHeaderId == id, includeProperties: "ApplicationUser");
+            if (orderHeader == null)
+            {
+                return NotFound();
+            }
             var service = new SessionService();
             Session session = service.Get(orderHeader.SessionId);
 
-            if(session.PaymentStatus.ToLower() == "paid") 
+            if(session != null && session.PaymentStatus.ToLower() == "paid") 
             {
 				_unitOfWork.OrderHeader.UpdateStripePaymentID(id, session.Id, session.PaymentIntentId); 
                 _unitOfWork.OrderHeader.UpdateStatus(id, StaticDetails.StatusApproved, StaticDetails.PaymentStatusApproved);
@@ -195,7 +203,7 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
         public IActionResult Minus(int cartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId, tracked: true); //check tracked
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId, tracked: true); 
             if (cartFromDb.Count <= 1)
             {
                 //remove that from cart
@@ -216,7 +224,7 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
         public IActionResult Remove(int cartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId,tracked : true); //check tracked
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId,tracked : true); 
 
             _unitOfWork.ShoppingCart.Remove(cartFromDb); //this was at line 226
 

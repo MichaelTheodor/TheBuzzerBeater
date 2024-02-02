@@ -33,8 +33,8 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
-                    Firstname = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Lastname = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     StreetAddress = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(100)", nullable: true),
@@ -260,6 +260,12 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         principalTable: "OrderHeaders",
                         principalColumn: "OrderHeaderId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderDetails_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -354,7 +360,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                     { 36, 3, "Nike Elite Tournament 8P Deflated", "\\images\\products\\Nike Elite Tournament 8P Deflated.jpg", "Nike Elite Tournament 8P Deflated", 68.900000000000006 },
                     { 37, 3, "Wilson Nba Official Game Ball Bskt Retail", "\\images\\products\\Wilson Nba Official Game Ball Bskt Retail.jpg", "Wilson Nba Official Game Ball Bskt Retail", 259.0 },
                     { 38, 3, "Nike Championship 8P Deflated", "\\images\\products\\Nike Championship 8P Deflated.jpg", "Nike Championship 8P Deflated", 104.0 },
-                    { 39, 3, "Nike Basketball 8P Prm Energy Deflated", "\\images\\products\\Nike Playground 8P 2.0 G Antetokounmpo Deflated.jpg", "Nike Basketball 8P Prm Energy Deflated", 57.509999999999998 },
+                    { 39, 3, "Nike Basketball 8P Prm Energy Deflated", "\\images\\products\\Nike Basketball 8P Prm Energy Deflated.jpg", "Nike Basketball 8P Prm Energy Deflated", 57.509999999999998 },
                     { 40, 3, "Nike Skills", "\\images\\products\\Nike Skills.jpg", "Nike Skills", 13.5 },
                     { 41, 3, "Nike Everyday All Court 8P Graphic Deflated", "\\images\\products\\Nike Everyday All Court 8P Graphic Deflated.jpg", "Nike Everyday All Court 8P Graphic Deflated", 39.899999999999999 },
                     { 42, 3, "Nike Ultimate 2.0 8P Graphic Deflated", "\\images\\products\\Nike Ultimate 2.0 8P Graphic Deflated.jpg", "Nike Ultimate 2.0 8P Graphic Deflated", 44.899999999999999 },
@@ -421,6 +427,11 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                 name: "IX_OrderDetails_OrderHeaderId",
                 table: "OrderDetails",
                 column: "OrderHeaderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_ProductId",
+                table: "OrderDetails",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderHeaders_ApplicationUserId",

@@ -61,8 +61,10 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
             {
                 //add cart record
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
-                HttpContext.Session.SetInt32(StaticDetails.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
                 _unitOfWork.Save();
+                HttpContext.Session.SetInt32(StaticDetails.SessionCart, 
+                _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count()); 
+                
             }
             TempData["success"] = "Cart updated succesfully";
 
