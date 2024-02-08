@@ -9,9 +9,9 @@ function loadDataTable() {
         "ajax": { url: '/admin/product/getall' },
         "columns": [
             { data: 'name', "width": "20%" },
-            { data: 'category.name', "width": "15%" },
+            { data: 'categoryName', "width": "15%" },
             { data: 'description', "width": "30%" },
-            { data: 'price', "width": "5%" },
+            { data: 'price', "width": "15%" },
             {
                 data: 'productId',
                 "render": function (data) {
@@ -28,16 +28,23 @@ function loadDataTable() {
         "initComplete": function (settings, json) {
             // Apply row styling here
             applyTableStyling();
+        },
+        "drawCallback": function (settings) {
+            // Apply row styling on each draw (including pagination)
+            applyTableStyling();
         }
     });
 }
 
 // Function to apply styling to DataTable rows and cells
 function applyTableStyling() {
+    // Remove existing styling
+    $('#tblData tbody tr').removeClass('table-dark');
+    $('#tblData tbody td').css('font-size', '');
+    // Apply new styling
     $('#tblData tbody tr').addClass('table-dark');
     $('#tblData tbody td').css('font-size', '20px');
 }
-
 // Function to handle delete action
 function Delete(url) {
     Swal.fire({

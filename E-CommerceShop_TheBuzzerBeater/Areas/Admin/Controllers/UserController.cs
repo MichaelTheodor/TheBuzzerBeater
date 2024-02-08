@@ -51,7 +51,7 @@ namespace TheBuzzerBeater.Web.Areas.Admin.Controllers
 
 
          [HttpPost]
-        public IActionResult RoleManagment(RoleManagementVM roleManagementVM) {
+        public IActionResult RoleManagement(RoleManagementVM roleManagementVM) {
 
             string oldRole  = _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u => u.Id == roleManagementVM.ApplicationUser.Id))
                     .GetAwaiter().GetResult().FirstOrDefault();
