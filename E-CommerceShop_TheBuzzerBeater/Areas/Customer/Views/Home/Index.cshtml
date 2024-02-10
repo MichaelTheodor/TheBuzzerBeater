@@ -4,39 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="text-center mt-4 mb-4">Welcome to TheBuzzerBeater – Your Ultimate NBA Fashion Destination!</h2>
+            <h2 class="text-center mt-4 mb-4"><strong>Welcome to TheBuzzerBeater – Your Ultimate NBA Fashion Destination!</strong></h2>
         </div>
-    </div>
-</div>
-<br>
-
-<div class="container mt-4">
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="\images\site\Logo.png" class="d-block mx-auto" alt="Slide 1">
-            </div>
-            <div class="carousel-item">
-                <img src="\images\site\17.jpg" class="d-block  mx-auto" alt="Slide 2">
-            </div>
-            <div class="carousel-item">
-                <img src="\images\site\2.png" class="d-block  mx-auto" alt="Slide 3">
-            </div>
-            <div class="carousel-item">
-                <img src="\images\site\3.jpg" class="d-block  mx-auto" alt="Slide 4">
-            </div>
-            <div class="carousel-item">
-                <img src="\images\site\5.png" class="d-block  mx-auto" alt="Slide 5">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-visible">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-visible">Next</span>
-        </button>
     </div>
 </div>
 <br>
@@ -57,23 +26,86 @@
             </div>
         </div>
     </div><br>
-    <div class="row">
-        <h4>Elevate Your Style: </h4>
-        <h5>
-            Discover a winning lineup of fashion-forward gear that allows you to express your love for the game in every aspect of your life. From iconic jerseys to street-style essentials, we've got your wardrobe covered, ensuring you're always on top of your style game.
-        </h5>
-    </div>
-    <br>
+    
+    <section class="brands__section bg-primary-outline">
+        <div class="container ">
+            <div class="position-relative">
+                <div class="row">
+                    <h3 class="my-4 text-center"><strong>Elevate Your Style:</strong></h3>
+                    <h4>
+                        Discover a winning lineup of fashion-forward gear that allows you to express your love for the game in every aspect of your life.
+                        From iconic jerseys to street-style essentials, we've got your wardrobe covered, ensuring you're always on top of your style game.
+                    </h4>
+                    <h4 class="my-4 text-center text-primary">
+                        It's your style, your game, your destination !
+                    </h4>
+                    <h3 class="my-4 text-center"><strong>Quality Meets Fandom:</strong></h3>
+                    <h4>
+                        We understand that being a fan is not just about the game; it's a lifestyle.
+                        That's why we source premium materials and collaborate with top designers to bring you products that seamlessly blend quality,
+                        comfort, and team pride. Each piece is a celebration of your favorite teams and players.
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </section><br><br>
 
-    <div class="row">
-        <h4>Quality Meets Fandom: </h4>
-        <h5>
-            We understand that being a fan is not just about the game; it's a lifestyle. That's why we source premium materials and collaborate with top designers to bring you products that seamlessly blend quality, comfort, and team pride. Each piece is a celebration of your favorite teams and players.
-        </h5>
-    </div>
-    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 video-container">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img src="/images/site/gif/Nba-logos.gif" class="embed-responsive-item img-fluid" alt="NBA Logos">
+                </div>
+                <div class="text-center mt-4">
+                    <h4 class="display-4">Score the Perfect Gear for Every Game!</h4>
+                    <p class="lead mb-4">Explore our collection and elevate your game today!</p>
+                    <button class="btn btn-lg btn-primary booking-btn" id="booking-btn">SHOP NOW</button>
+                </div>
+            </div>
+        </div>
+    </div><br>
 
-    <h4>Explore Our Exclusive Collection:</h4> <br> <br>
+    <!-- Section 3: Featured Products -->
+    <section id="featured-products" class="featured-products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center mb-4">Featured Products</h2>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Replace the col-md-4 with your product card component -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="product-image.jpg" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Name</h5>
+                            <p class="card-text">Product Description</p>
+                            <a href="#" class="btn btn-primary">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more product cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Promotions and Deals -->
+    <section class="promotions">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="promo-banner text-center">
+                        <h2>Check out our latest promotions!</h2>
+                        <p>Hurry up! Limited-time offers</p>
+                        <a href="#special-offers" class="btn btn-lg btn-warning">View Deals</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   @*  <h4>Explore Our Exclusive Collection:</h4> <br> <br>
 
     <div class="row pb-3 text-primary">  
         @foreach (var group in Model.GroupBy(u => u.Category.Name))
@@ -101,51 +133,8 @@
                 </div>
             }
         }
-    </div>
+    </div>*@
 </div>
-<br>
+<br> 
 
 
-<div class="row">
-    <div class="row">
-        <h4 class="my-4">Why to Choose TheBuzzerBeater? </h4>
-        <ul>
-            <li>
-                <h5>Authenticity: Officially licensed NBA merchandise for an authentic fan experience.</h5>
-            </li>
-            <li>
-                <h5>Fast Break to Fashion: With easy navigation, secure transactions, and lightning-fast shipping, your journey from order to doorstep is a slam dunk.</h5>
-            </li>
-            <li>
-                <h5>Style: Stay on-trend with our carefully curated selection of the latest NBA fashion.</h5>
-            </li>
-            <li>
-                <h5>Quality: From fabric to craftsmanship, our products meet the highest standards.</h5>
-            </li>
-            <li>
-                <h5>Passion: We share your love for the game and bring that passion into every design.</h5>
-            </li>
-        </ul>
-    </div>
-</div>
-<br>
-
-
-
-
-<div class="row">
-    <h4 class="my-4">Thank you for choosing TheBuzzerBeater OnlineStore ! </h4>
-    <h5>We're committed to provide you a seamless shopping experience that matches the excitement of a fast break on the court.</h5>
-    <h5>
-        It's your style, your game, your destination !
-    </h5>
-</div>
-<br>
-
-<div class="row">
-    <h4>Join the Community:</h4>
-    <h5>
-        TheBuzzerBeater is more than just an online store; it's a community of basketball enthusiasts who celebrate the spirit of the game. Follow us on social media, share your style using #BuzzerBeaterStyle, and connect with fellow fans.
-    </h5>
-</div>
-<br>

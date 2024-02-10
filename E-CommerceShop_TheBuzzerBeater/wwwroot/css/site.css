@@ -1,6 +1,9 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
+
 
 @media (min-width: 768px) {
   html {
@@ -12,13 +15,9 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
 
 body {
-  margin-bottom: 60px;
+ /* margin-bottom: 60px;*/
 }
 .btn-action {
     width: 100%; /* Adjust the width as needed */
@@ -46,4 +45,43 @@ video {
     max-width: 100%; /* Ensure the video does not exceed its container's width */
     height: auto;
 }
+.brands__section .img-fluid {
+    max-width: 30%; 
+    height: auto; 
+}
+.social__icons a:not(:last-child) {
+    margin-right: 20px; 
+}
 
+.testimonials-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+    .testimonials-container img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+.testimonial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    color: black;
+}
+.testimonials-container {
+    flex-direction: column;
+}
+
+hr.section__line {
+    background-color: #df691a;
+    border: none; /* Ensure no border is applied */
+    height: 2px; /* Set the height of the line */
+}

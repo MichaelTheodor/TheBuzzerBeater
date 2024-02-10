@@ -70,11 +70,40 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult BlogNews()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
         }
-
+        public IActionResult ReturnsAndExchanges()
+        {
+            return View();
+        }
+        public IActionResult ShippingInformation()
+        {
+            return View();
+        }
+        public IActionResult SizeGuide()
+        {
+            return View();
+        }
+        
+        public IActionResult TermsOfService()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

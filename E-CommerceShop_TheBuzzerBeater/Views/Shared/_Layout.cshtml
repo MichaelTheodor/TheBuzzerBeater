@@ -20,21 +20,40 @@
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    
                     <img src="/images/site/Logo/Logo.png" style="width:50px" />
-                    </a>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" asp-area="Customer" asp-controller="Home" asp-action="Index">HOME
+                            <a class="nav-link active" asp-area="Customer" asp-controller="Home" asp-action="Index">
+                                HOME
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="Admin" asp-controller="Order" asp-action="Index">MANAGE ORDER</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                SHOP
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Jerseys & Apparel</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Footwear</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Basketball Equipment</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Accessories</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Sales/Clearance</a>
+                                </li>
+                            </ul>
                         </li>
                         @if (User.IsInRole(StaticDetails.Role_Admin))
                         {
@@ -60,19 +79,35 @@
                                 </ul>
                             </li>
                         }
-                       
-                            <li class="nav-item">
-                                <a class="nav-link active" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                                    @await Component.InvokeAsync("ShoppingCart") 
-                                </a>
-                            </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="AboutUs">
+                                ABOUT US
+                            </a>
+                        <li />
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="ContactUs">
+                                CONTACT US
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="BlogNews">
+                                BLOG/NEWS
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="Admin" asp-controller="Order" asp-action="Index">MANAGE ORDER</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                    @await Component.InvokeAsync("ShoppingCart")
+                            </a>
+                        </li>
                     </ul>
-                    <partial name ="_LoginPartial" />
-                    @* <form class="d-flex">
+                    <partial name="_LoginPartial" />
+                    <form class="d-flex">
                         <input class="form-control me-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form> *@
+                        <button class="btn btn-dark my-2 my-sm-0" type="submit">SEARCH</button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -83,80 +118,172 @@
             @RenderBody()
         </main>
     </div>
-    <section class="section__container brands__container">
-        <div class="brand__image">
-            <img src="assets/brand-1.png" alt="brand" />
-        </div>
-        <div class="brand__image">
-            <img src="assets/brand-2.png" alt="brand" />
-        </div>
-        <div class="brand__image">
-            <img src="assets/brand-3.png" alt="brand" />
-        </div>
-        <div class="brand__image">
-            <img src="assets/brand-4.png" alt="brand" />
-        </div>
-        <div class="brand__image">
-            <img src="assets/brand-5.png" alt="brand" />
-        </div>
-        <div class="brand__image">
-            <img src="assets/brand-6.png" alt="brand" />
+
+
+    <section class="brands__section bg-primary-outline">
+        <div class="container text-center">
+            <div class="position-relative">
+                <br>
+                <div class="row">
+                    <h3 class="my-4"><strong>Thank you for choosing TheBuzzerBeater OnlineStore !</strong> </h3>
+                    <h4>We're committed to provide you a seamless shopping experience that matches the excitement of a fast break on the court.</h4>
+                    <h4>
+                        It's your style, your game, your destination !
+                    </h4>
+                </div><br><br>
+                <h3><strong>Join the Community:</strong></h3>
+                <h4>
+                    TheBuzzerBeater is more than just an online store; it's a community of basketball enthusiasts who celebrate the spirit of the game.
+                    Follow us on social media, share your style using #BuzzerBeaterStyle, and connect with fellow fans.
+                </h4><br>
+
+            </div><br><br>
         </div>
     </section>
 
-    <hr />
+    <section class="brands__section bg-white">
+        <div class="brands__container text-center ">
+            <div class="position-relative">
+                <br>
+                <h2 class="section__title text-primary"><strong>Our Major Brands</strong></h2>
+                <hr class="section__line">
+                <div class="row justify-content-center ">
+                    <div class="col-md-3">
+                        <img src="\images\brands\nike.png" alt="Nike" class="img-fluid" />
+                    </div>
 
-    <footer class="section__container footer__container">
-        <div class="footer__col">
-            <h4 class="footer__heading">CONTACT INFO</h4>
-            <p>
-                <i class="ri-map-pin-2-fill"></i> 123, London Bridge Street, London
-            </p>
-            <p><i class="ri-mail-fill"></i> support@thebuzzerbeater.com</p>
-            <p><i class="ri-phone-fill"></i> (+012) 3456 789</p>
+                    <div class="col-md-3">
+                        <img src="\images\brands\stance.jpg" alt="Stance" class="img-fluid" />
+                    </div>
+                    <div class="col-md-3">
+                        <img src="\images\brands\wilson.png" alt="Wilson" class="img-fluid" />
+                    </div>
+                    <div class="col-md-3">
+                        <img src="\images\brands\spalding.jpg" alt="Spalding" class="img-fluid" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <img src="\images\brands\jordan_logo.png" alt="Jordan" class="img-fluid" />
+                    </div>
+                    <div class="col-md-3">
+                        <img src="\images\brands\hardwood.jpg" alt="Hardwood" class="img-fluid" />
+                    </div>
+                    <div class="col-md-3">
+                        <img src="\images\brands\nba_logo.jpg" alt="Nba Logo" class="img-fluid" />
+                    </div>
+                </div>
+            </div><br>
         </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">COMPANY</h4>
-            <p>Home</p>
-            <p>About Us</p>
-            <p>Work With Us</p>
-            <p>Our Blog</p>
-            <p>Terms & Conditions</p>
+    </section>
+
+    <section class="brands__section bg-primary-outline">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2><strong>Shop with Confidence</strong></h2>
+                    <h4>Our website is secure and your satisfaction is guaranteed.</h4>
+                    <hr class="section__line"><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <h4>Money-Back Guarantee: Assurance of customer satisfaction and product quality.</h4>
+                    <img src="/images/site/money-back.png" alt="Money-Back Guarantee" class="trust-logo" style="width: 120px; height: 80px;">
+                </div>
+                <div class="col-md-6 text-center">
+                    <h4>We use Stripe for secure online payments.</h4>
+                    <img src="/images/site/stripe.png" alt="Stripe Payment" class="trust-logo" style="width: 120px; height: 80px;">
+                </div>
+                <br>
+            </div><br><br>
         </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">USEFUL LINK</h4>
-            <p>Help</p>
-            <p>Track My Order</p>
-            <p>Men</p>
-            <p>Women</p>
-            <p>Shoes</p>
-        </div>
-        <div class="footer__col">
-            <h4 class="footer__heading">INSTAGRAM</h4>
-            <div class="instagram__grid">
-                <img src="assets/instagram-1.jpg" alt="instagram" />
-                <img src="assets/instagram-2.jpg" alt="instagram" />
-                <img src="assets/instagram-3.jpg" alt="instagram" />
-                <img src="assets/instagram-4.jpg" alt="instagram" />
-                <img src="assets/instagram-5.jpg" alt="instagram" />
-                <img src="assets/instagram-6.jpg" alt="instagram" />
+    </section>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-5"> <strong>Our Basketball Fans Recommendations</strong></h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <img src="/images/site/sir2.jpeg" alt="Fan 1">
+                <p>"Awesome selection of basketball gear! TheBuzzerBeater made my game day experience extraordinary."</p>
+            </div>
+            <div class="testimonial">
+                <img src="/images/site/lady.jpeg" alt="Fan 2">
+                <p>"TheBuzzerBeater offers top-quality products and exceptional customer service. My go-to store for all basketball needs!"</p>
+            </div>
+            <div class="testimonial">
+                <img src="~/images/site/sir1.jpeg" alt="Fan 3">
+                <p>"As a basketball enthusiast, I highly recommend TheBuzzerBeater for its wide range of products and hassle-free shopping experience."</p>
+            </div>
+        </div><br><br>
+    </div>
+
+    <footer class="footer bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <br><br>
+                    <h4 class="footer__heading"><strong>SHOP</strong></h4><br>
+                    <ul class="list-unstyled">
+                        <li><a href="@Url.Action("Index", "Home", new { area = "Customer" })">Home</a></li>
+                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Jerseys & Apparel" })">Jerseys & Apparel</a></li>
+                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Footwear" })">Footwear</a></li>
+                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Basketball Equipment" })">Basketball Equipment</a></li>
+                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Accessories" })">Accessories</a></li>
+                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Sales/Clearance" })">Sales/Clearance</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <br><br>
+                    <h4 class="footer__heading"><strong>INFORMATION</strong></h4><br>
+                    <ul class="list-unstyled">
+                        <li><a asp-area="Customer" asp-controller="Home" asp-action="AboutUs">About Us</a></li>
+                        <li><a asp-area="Customer" asp-controller="Home" asp-action="BlogNews">Blog/News</a></li>
+                        <li><a asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy Policy</a></li>
+                        <li><a asp-area="Customer" asp-controller="Home" asp-action="ReturnsAndExchanges">Returns and Exchanges</a></li>
+                        <li><a asp-area="Customer" asp-controller="Home" asp-action="ShippingInformation">Shipping Information</a></li>
+                        <li><a asp-area="Customer" asp-controller="Home" asp-action="SizeGuide">Size Guide</a></li>
+                        <li><a asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a></li>
+                        <li><a asp-area="Customer" asp-controller="Home" asp-action="TermsOfService">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact__info">
+                        <br><br>
+                        <h4 class="footer__heading"><strong>CONTACT INFO</strong></h4><br>
+                        <p class="contact_info_p text-primary">
+                            <i class="bi bi-geo-fill"></i> 123, Basketball Court Street, City
+                        </p>
+                        <p class="contact_info_p text-primary"><i class="bi bi-envelope-fill"></i> info@thebuzzerbeater.com</p>
+                        <p class="contact_info_p text-primary"><i class="bi bi-telephone-fill"></i> (+123)456-7890</p>
+                    </div>
+                    <br>
+                    <h4 class="footer__heading"><strong>FOLLOW US</strong></h4>
+                    <div class="social__icons">
+                        <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
+        <br><br>
     </footer>
 
-    <hr />
-    <footer class="border-top footer  bg-primary" data-bs-theme="dark">
-        <div class="container">
-            &copy; TheBuzzerBeater 2024. All Rights Reserved.
+    <footer class="border-top footer bg-primary mt-0 mb-0" data-bs-theme="dark">
+        <div class="container justify-content-center text-center py-3">
+            <strong>&copy; TheBuzzerBeater 2024. All Rights Reserved.</strong>
         </div>
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-   
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

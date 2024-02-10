@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\brands\mcdavid.jpg" />
+    <Content Remove="wwwroot\images\brands\mcdavid.png" />
+  </ItemGroup>
+
+  <ItemGroup>
 	
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1" />
 	
