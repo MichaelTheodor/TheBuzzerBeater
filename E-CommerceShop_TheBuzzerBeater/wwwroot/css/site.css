@@ -85,3 +85,7 @@ hr.section__line {
     border: none; /* Ensure no border is applied */
     height: 2px; /* Set the height of the line */
 }
+
+.bg-white {
+    background-color: white !important;
+}

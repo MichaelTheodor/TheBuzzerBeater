@@ -10,6 +10,8 @@
   <ItemGroup>
     <Content Remove="wwwroot\images\brands\mcdavid.jpg" />
     <Content Remove="wwwroot\images\brands\mcdavid.png" />
+    <Content Remove="wwwroot\images\site\half-court image.jpg" />
+    <Content Remove="wwwroot\images\site\half-court.jpg" />
   </ItemGroup>
 
   <ItemGroup>
