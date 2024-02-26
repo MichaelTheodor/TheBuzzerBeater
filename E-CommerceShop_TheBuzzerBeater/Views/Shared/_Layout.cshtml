@@ -105,8 +105,8 @@
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <form class="d-flex" action="@Url.Action("Search", "Home")" method="get">
+                        <input class="form-control me-sm-2" type="search" name="searchString" placeholder="Search">
                         <button class="btn btn-dark my-2 my-sm-0" type="submit">SEARCH</button>
                     </form>
                 </div>

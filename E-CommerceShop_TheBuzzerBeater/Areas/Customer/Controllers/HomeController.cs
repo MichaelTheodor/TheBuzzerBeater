@@ -27,6 +27,25 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
             return View(productList);
         }
+        public IActionResult Search(string searchString)
+        {
+            IEnumerable<Product> searchResults;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                searchResults = _unitOfWork.Product.GetAll(
+                    filter: p => p.Name.Contains(searchString),
+                    includeProperties: "Category"
+                );
+            }
+            else
+            {
+                searchResults = Enumerable.Empty<Product>();
+            }
+
+            return View(searchResults);
+        }
+
 
         public IActionResult ProductDetails(int productId)
         {
