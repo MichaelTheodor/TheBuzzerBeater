@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TheBuzzerBeater.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using TheBuzzerBeater.DataAccess.Data;
 namespace TheBuzzerBeater.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240228000601_UpdateCategoriesImageUrl")]
+    partial class UpdateCategoriesImageUrl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -924,7 +927,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         },
                         new
                         {
-                            ProductId = 53,
+                            ProductId = 64,
                             CategoryId = 15,
                             Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                             ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
@@ -933,7 +936,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         },
                         new
                         {
-                            ProductId = 54,
+                            ProductId = 74,
                             CategoryId = 16,
                             Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                             ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
@@ -942,7 +945,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         },
                         new
                         {
-                            ProductId = 55,
+                            ProductId = 84,
                             CategoryId = 17,
                             Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                             ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",
@@ -951,7 +954,7 @@ namespace TheBuzzerBeater.DataAccess.Migrations
                         },
                         new
                         {
-                            ProductId = 56,
+                            ProductId = 94,
                             CategoryId = 18,
                             Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                             ImageUrl = "\\images\\products\\Wilson NBA DVR Pump Kit.jpg",

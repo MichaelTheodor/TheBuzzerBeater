@@ -34,25 +34,30 @@
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Customer" asp-controller="Product" asp-action="Index">
+                                OUR PRODUCTS
+                            </a>
+                        </li>
                         <li class="nav-item dropdown bg-primary">
                             <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 SHOP
                             </a>
                             <ul class="dropdown-menu bg-primary">
                                 <li class="nav-item">
-                                    <a class="dropdown-item " asp-area="" asp-controller="Category" asp-action="Index">Jerseys & Apparel</a>
+                                    <a class="dropdown-item " asp-area="Customer" asp-controller="Category" asp-action="JerseysAndApparel">Jerseys & Apparel</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Footwear</a>
+                                    <a class="dropdown-item" asp-area="Customer" asp-controller="Category" asp-action="Footwear">Footwear</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Basketball Equipment</a>
+                                    <a class="dropdown-item" asp-area="Customer" asp-controller="Category" asp-action="BasketballEquipment">Basketball Equipment</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Accessories</a>
+                                    <a class="dropdown-item" asp-area="Customer" asp-controller="Category" asp-action="Accessories">Accessories</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Sales/Clearance</a>
+                                    <a class="dropdown-item" asp-area="Customer" asp-controller="Category" asp-action="SalesAndClearance">Sales/Clearance</a>
                                 </li>
                             </ul>
                         </li>
@@ -226,11 +231,11 @@
                     <h4 class="footer__heading"><strong>SHOP</strong></h4><br>
                     <ul class="list-unstyled">
                         <li><a href="@Url.Action("Index", "Home", new { area = "Customer" })">Home</a></li>
-                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Jerseys & Apparel" })">Jerseys & Apparel</a></li>
-                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Footwear" })">Footwear</a></li>
-                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Basketball Equipment" })">Basketball Equipment</a></li>
-                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Accessories" })">Accessories</a></li>
-                        <li><a href="@Url.Action("Index", "Category", new { area = "", category = "Sales/Clearance" })">Sales/Clearance</a></li>
+                        <li><a href="@Url.Action("JerseysAndApparel", "Category", new { area = "Customer"})">Jerseys & Apparel</a></li>
+                        <li><a href="@Url.Action("Footwear", "Category", new { area = "Customer"})">Footwear</a></li>
+                        <li><a href="@Url.Action("BasketballEquipment ", "Category", new { area = "Customer"})">Basketball Equipment</a></li>
+                        <li><a href="@Url.Action("Accessories", "Category", new { area = "Customer"})">Accessories</a></li>
+                        <li><a href="@Url.Action("SalesAndClearance", "Category", new { area = "Customer"})">Sales/Clearance</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

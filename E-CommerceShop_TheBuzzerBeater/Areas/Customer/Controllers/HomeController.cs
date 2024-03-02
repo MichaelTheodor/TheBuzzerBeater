@@ -22,10 +22,9 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            
-            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
 
-            return View(productList);
+            var categories = _unitOfWork.Category.GetCategories().Take(4).ToList(); // Assuming GetCategories() returns a list of categories
+            return View(categories);
         }
         public IActionResult Search(string searchString)
         {

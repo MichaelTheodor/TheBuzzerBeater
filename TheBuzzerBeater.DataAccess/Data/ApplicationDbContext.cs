@@ -14,7 +14,7 @@ namespace TheBuzzerBeater.DataAccess.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
+
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -26,7 +26,7 @@ namespace TheBuzzerBeater.DataAccess.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+
 
             optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
         }
@@ -35,24 +35,40 @@ namespace TheBuzzerBeater.DataAccess.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryId = 1, Name = "Air Pumps", DisplayOrder = 1}, //ok
-                new Category { CategoryId = 2, Name = "Arm Sleeves", DisplayOrder = 2 }, //check
-                new Category { CategoryId = 3, Name = "Balls", DisplayOrder = 3 }, //check
-                new Category { CategoryId = 4, Name = "Basket", DisplayOrder = 4 },//check
-                new Category { CategoryId = 5, Name = "Basketball Nets", DisplayOrder = 5 },
-                new Category { CategoryId = 6, Name = "Beanies", DisplayOrder = 6 },
-                new Category { CategoryId = 7, Name = "Hats", DisplayOrder = 7 },
-                new Category { CategoryId = 8, Name = "Headbands - Wristbands", DisplayOrder = 8 },
-                new Category { CategoryId = 9, Name = "Hoodies", DisplayOrder = 9 },
-                new Category { CategoryId = 10,Name = "Mugs & Cups", DisplayOrder = 10 }, //ok
-                new Category { CategoryId = 11, Name = "ΝΒΑ Jerseys", DisplayOrder = 11 },
-                new Category { CategoryId = 12, Name = "ΝΒΑ Retro Jerseys", DisplayOrder = 12 },
-                new Category { CategoryId = 13,Name = "Shoes", DisplayOrder = 13},
-                new Category { CategoryId = 14,Name = "Socks", DisplayOrder = 14 },
-                new Category { CategoryId = 15,Name = "Stickers", DisplayOrder = 15} // ok
-                
-                );
+            // Define categories
+            var categories = new List<Category>
+                {
+                    new Category { CategoryId = 1, Name = "Jerseys & Apparel", DisplayOrder = 1,ImageUrl = @"\images\site\Jerseys.png" },
+                    new Category { CategoryId = 2, Name = "Footwear", DisplayOrder = 2,ImageUrl = @"\images\site\Footwear.png" },
+                    new Category { CategoryId = 3, Name = "Basketball Equipment", DisplayOrder = 3,ImageUrl = @"\images\site\Equipment.png" },
+                    new Category { CategoryId = 4, Name = "Accessories", DisplayOrder = 4 ,ImageUrl = @"\images\site\Accessories.png"},
+                    new Category { CategoryId = 5, Name = "Sales/Clearance", DisplayOrder = 5,ImageUrl = @"\images\site\Clearance.png" }
+                };
+
+            // Add subcategories
+            var subcategories = new List<Category> 
+            {
+                new Category { CategoryId = 10, Name = "Air Pumps", DisplayOrder = 1, ParentCategoryId = 3 }, //ok
+                new Category { CategoryId = 11, Name = "Arm Sleeves", DisplayOrder = 2 , ParentCategoryId = 3}, //check
+                new Category { CategoryId = 12, Name = "Balls", DisplayOrder = 3, ParentCategoryId = 3 }, //check
+                new Category { CategoryId = 13, Name = "Basket", DisplayOrder = 4, ParentCategoryId = 3 },//check
+                new Category { CategoryId = 14, Name = "Basketball Nets", DisplayOrder = 5 , ParentCategoryId = 3},
+                new Category { CategoryId = 15, Name = "Beanies", DisplayOrder = 6, ParentCategoryId = 4 },
+                new Category { CategoryId = 16, Name = "Hats", DisplayOrder = 7,ParentCategoryId = 4 },
+                new Category { CategoryId = 17, Name = "Headbands - Wristbands", DisplayOrder = 8, ParentCategoryId = 3 },
+                new Category { CategoryId = 18, Name = "Hoodies", DisplayOrder = 9, ParentCategoryId = 1 },
+                new Category { CategoryId = 19, Name = "Mugs & Cups", DisplayOrder = 10,ParentCategoryId = 4 }, //ok
+                new Category { CategoryId = 20, Name = "ΝΒΑ Jerseys", DisplayOrder = 11, ParentCategoryId = 1 },
+                new Category { CategoryId = 21, Name = "ΝΒΑ Retro Jerseys", DisplayOrder = 12 , ParentCategoryId = 1},
+                new Category { CategoryId = 22, Name = "Shoes", DisplayOrder = 13, ParentCategoryId = 2 },
+                new Category { CategoryId = 23, Name = "Socks", DisplayOrder = 14 , ParentCategoryId = 2},
+                new Category { CategoryId = 24, Name = "Stickers", DisplayOrder = 15,ParentCategoryId = 4 } // ok
+
+            };
+
+            // Add categories and subcategories to the modelBuilder
+            modelBuilder.Entity<Category>().HasData(categories);
+            modelBuilder.Entity<Category>().HasData(subcategories);
 
             modelBuilder.Entity<Product>().HasData(
                 new Product // Cups
@@ -61,7 +77,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nba Boston Celtics Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
-                    CategoryId = 10,
+                    CategoryId = 19,
                     ImageUrl = @"\images\products\back-me-up-cup-nba-boston-celtics.jpg"
                 },
                 new Product
@@ -70,7 +86,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nba Milwaukee Bucks Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
-                    CategoryId = 10,
+                    CategoryId = 19,
                     ImageUrl = @"\images\products\back-me-up-cup-nba-bucks.jpg"
                 },
                 new Product
@@ -79,7 +95,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nba Chicago Bulls Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
-                    CategoryId = 10,
+                    CategoryId = 19,
                     ImageUrl = @"\images\products\back-me-up-cup-nba-bulls.jpg"
                 },
                 new Product
@@ -88,7 +104,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nba Los Angeles Lakers Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
-                    CategoryId = 10,
+                    CategoryId = 19,
                     ImageUrl = @"\images\products\back-me-up-cup-nba-la-lakers (1).jpg"
                 },
                 new Product
@@ -97,7 +113,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nba Los Angeles Lakers Cup 2",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 6,
-                    CategoryId = 10,
+                    CategoryId = 19,
                     ImageUrl = @"\images\products\back-me-up-cup-nba-la-lakers.jpg"
                 },
                 new Product
@@ -106,7 +122,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nba Logo Cup",
                     Description = "Ceramic mugs and cups with your favorite NBA team",
                     Price = 5,
-                    CategoryId = 10,
+                    CategoryId = 19,
                     ImageUrl = @"\images\products\back-me-up-cup-nba-logo.jpg"
                 },
                 new Product // Air Pumps
@@ -115,7 +131,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Jordan Essential Ball Pump Intl",
                     Description = "Quickly inflate your favorite ball with the Jordan Essentials Ball Pump. Its compact design makes it easy to carry, and ideal for supplementing the ball air.",
                     Price = 19.99,
-                    CategoryId = 1,
+                    CategoryId = 10,
                     ImageUrl = @"\images\products\Jordan Essential Ball Pump Intl.jpg"
                 },
                 new Product
@@ -124,7 +140,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nike Essential Ball Pump Intl",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 16.99,
-                    CategoryId = 1,
+                    CategoryId = 10,
                     ImageUrl = @"\images\products\Nike Essential Ball Pump Intl.jpg"
                 },
                 new Product
@@ -133,7 +149,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nike Hyperspeed Ball Pump Intl Swoosh",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 24.50,
-                    CategoryId = 1,
+                    CategoryId = 10,
                     ImageUrl = @"\images\products\Nike Hyperspeed Ball Pump Intl Swoosh.jpg"
                 },
                 new Product
@@ -142,7 +158,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Spalding 12' Dual Action Power Pump",
                     Description = "The Spalding dual action power pump comes with an attached extension hose. The 12” pump fits all types of valves (includes two different sized needles) and pumps air by pushing and pulling action.",
                     Price = 18.00,
-                    CategoryId = 1,
+                    CategoryId = 10,
                     ImageUrl = @"\images\products\Spalding 12' Dual Action Power Pump.jpg"
                 },
                 new Product
@@ -151,7 +167,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Wilson Nba Authentic Aluminum Pump",
                     Description = "Dual action Aluminium pump with durable extension hose.",
                     Price = 21.90,
-                    CategoryId = 1,
+                    CategoryId = 10,
                     ImageUrl = @"\images\products\Wilson Nba Authentic Aluminum Pump.jpg"
                 },
                 new Product
@@ -160,7 +176,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 1,
+                    CategoryId = 10,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // Arm Sleeves
@@ -169,7 +185,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Jordan Unisex Shooter Sleeves",
                     Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
                     Price = 61.99,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\Jordan Unisex Shooter Sleeves.jpg"
                 },
                 new Product
@@ -178,7 +194,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "COMPRESSPORT Armforce Ultralight",
                     Description = "If you're wondering why you need these COMPRESSPORT Armforce Ultralight Sleeves if you're doing your favorite sports when the weather gets colder, the answer is to provide you with the thermoregulation you need when exposed to cold air. Featuring gentle compression properties, they precisely target core muscles for stimulated blood flow and support. For running, cycling or hiking these sleeves will hug your hands while protecting and keeping them warm.",
                     Price = 28.00,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\COMPRESSPORT Armforce Ultralight.jpg"
                 },
                 new Product
@@ -187,7 +203,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nike Pro Elite SLeeves 2.0 ",
                     Description = "Pro Elite Sleeves 2.0, are made with Dri-FIT technology removing sweat for a dry and comfortable feel. Their preformed construction ensures enhanced mobility, while flat seams eliminate friction and irritation.",
                     Price = 29.90,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\Nike Pro Elite SLeeves 2.0.jpg"
                 },
                 new Product
@@ -196,7 +212,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nike Pro Elbow Sleeve 3.0",
                     Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
                     Price = 22.95,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\Nike Pro Elbow Sleeve 3.0.jpg"
                 },
                 new Product
@@ -205,7 +221,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nike Pro Ankle Sleeve 3.0",
                     Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
                     Price = 21.99,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\Nike Pro Ankle Sleeve 3.0.jpg"
                 },
                 new Product
@@ -214,7 +230,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nike NBA 2.0 Basketball Shooter Sleeve",
                     Description = "Utilised by the best in the game to improve performance, these form fitting sleeves provide superior support and protection. The compression fit allows a wide range of motion and muscle support. The Dri-FIT fabric wicks moisture away for comfort.Sold in pairs",
                     Price = 34.50,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\Jordan Unisex Shooter Sleeves.jpg"
                 },
                 new Product
@@ -223,7 +239,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Mcdavid Hex Shooter Arm SLeeve",
                     Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
                     Price = 30.00,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\Mcdavid Hex Shooter Arm SLeeve.jpg"
                 },
                 new Product
@@ -232,7 +248,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Mcdavid Power Shooter Arm SLeeve",
                     Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
                     Price = 27.99,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\Mcdavid Power Shooter Arm SLeeve.jpg"
                 },
                 new Product
@@ -241,70 +257,70 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "MCDAVID Elite Compression Arm Sleeve",
                     Description = "Compressive Basketball Shooter Sleeves for optimal support on every shot.",
                     Price = 24.99,
-                    CategoryId = 2,
+                    CategoryId = 11,
                     ImageUrl = @"\images\products\MCDAVID Elite Compression Arm Sleeve.jpg"
                 },
                 new Product // Balls
                 {
                     ProductId = 32,
-                    Name = "Nike Playground 8P 2.0 G Antetokounmpo Deflated",
+                    Name = "Nike Playground 8P 2.0 G Antetokounmpo Deflated Basketball",
                     Description = "Nike Playground 8P 2.0 G Antetokounmpo Deflated",
                     Price = 33.50,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike Playground 8P 2.0 G Antetokounmpo Deflated.jpg"
                 },
-                new Product 
+                new Product
                 {
                     ProductId = 33,
-                    Name = "SKLZ Lightweight Control Basketball Ball",
+                    Name = "SKLZ Lightweight Control Basketball ",
                     Description = "The SKLZ Control basketball is the perfect training ball to help athletes improve their dribbling skills. It is made of high quality synthetic leather for indoor and outdoor training.",
                     Price = 39.90,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\SKLZ Lightweight Control Basketball Ball.jpg"
                 },
                 new Product
                 {
                     ProductId = 34,
-                    Name = "Nike All Court 8P Z Williamson Deflated",
+                    Name = "Nike All Court 8P Z Williamson Deflated Basketball",
                     Description = "Nike All Court 8P Z Williamson Deflated",
                     Price = 51.50,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike All Court 8P Z Williamson Deflated.jpg"
                 },
                 new Product
                 {
                     ProductId = 35,
-                    Name = "Nike Basketball 8P Energy Deflated",
+                    Name = "Nike Basketball 8P Energy Deflated ",
                     Description = "Nike Basketball 8P Energy Deflated",
                     Price = 57.15,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike Basketball 8P Energy Deflated.jpg"
                 },
                 new Product
                 {
                     ProductId = 36,
-                    Name = "Nike Elite Tournament 8P Deflated",
+                    Name = "Nike Elite Tournament 8P Deflated Basketball",
                     Description = "Nike Elite Tournament 8P Deflated",
                     Price = 68.90,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike Elite Tournament 8P Deflated.jpg"
                 },
                 new Product
                 {
                     ProductId = 37,
-                    Name = "Wilson Nba Official Game Ball Bskt Retail",
+                    Name = "Wilson Nba Official Game Basketball Retail",
                     Description = "Wilson Nba Official Game Ball Bskt Retail",
                     Price = 259,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Wilson Nba Official Game Ball Bskt Retail.jpg"
                 },
                 new Product
                 {
                     ProductId = 38,
-                    Name = "Nike Championship 8P Deflated",
+                    Name = "Nike Championship 8P Deflated Basketball",
                     Description = "Nike Championship 8P Deflated",
                     Price = 104,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike Championship 8P Deflated.jpg"
                 },
                 new Product
@@ -313,53 +329,53 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Nike Basketball 8P Prm Energy Deflated",
                     Description = "Nike Basketball 8P Prm Energy Deflated",
                     Price = 57.51,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike Basketball 8P Prm Energy Deflated.jpg"
                 },
                 new Product
                 {
                     ProductId = 40,
-                    Name = "Nike Skills",
+                    Name = "Nike Skills Basketball",
                     Description = "Nike Skills",
                     Price = 13.50,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike Skills.jpg"
                 },
                 new Product
                 {
                     ProductId = 41,
-                    Name = "Nike Everyday All Court 8P Graphic Deflated",
+                    Name = "Nike Everyday All Court 8P Graphic Deflated Basketball",
                     Description = "Nike Everyday All Court 8P Graphic Deflated",
                     Price = 39.90,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike Everyday All Court 8P Graphic Deflated.jpg"
                 },
                 new Product
                 {
                     ProductId = 42,
-                    Name = "Nike Ultimate 2.0 8P Graphic Deflated",
+                    Name = "Nike Ultimate 2.0 8P Graphic Deflated Basketball",
                     Description = "Nike Ultimate 2.0 8P Graphic Deflated",
                     Price = 44.90,
-                    CategoryId = 3,
+                    CategoryId = 12,
                     ImageUrl = @"\images\products\Nike Ultimate 2.0 8P Graphic Deflated.jpg"
                 },
-                
+
                 new Product // Baskets
                 {
                     ProductId = 43,
                     Name = "Wilson NBA Milwaukee Bucks Mini Hoop",
                     Description = "You don’t need a court to get shots up. Play anywhere with the Team Mini Hoop. Represent your squad with the team paint splatter style. This hoop fits over your doorway with easy assembly for quick set up.",
                     Price = 27.40,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\Wilson NBA Milwaukee Bucks Mini Hoop.jpg"
                 },
-                new Product 
+                new Product
                 {
                     ProductId = 44,
                     Name = "Amila Basketball Dashboard 16Mm",
                     Description = "Basketball Dashboard set",
                     Price = 115.90,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\Amila Basketball Dashboard 16Mm.jpg"
                 },
                 new Product
@@ -368,7 +384,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Amila Basketball With Hoop Net 2.27-3.05M",
                     Description = "Amila Basketball With Hoop Net 2.27-3.05M",
                     Price = 279.90,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\Amila Basketball With Hoop Net 2.27-3.05M.jpg"
                 },
                 new Product
@@ -377,7 +393,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Amila Basket Semi-Professional, Thickness 3.0Mm.jpg",
                     Description = "Amila handheld basket with adjustable height for family play. Ideal for indoor and outdoor use. Dashboard made of durable polycarbonate material with steel edging. The vinyl base is filled with water or sand for guaranteed stability in play.",
                     Price = 374.90,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\Amila Basket Semi-Professional, Thickness 3.0Mm.jpg"
                 },
                 new Product
@@ -386,7 +402,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "SKLZ Pro Mini Hoop System",
                     Description = "SKLZ Pro Mini Hoop System",
                     Price = 219.95,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\SKLZ Pro Mini Hoop System.jpg"
                 },
                 new Product
@@ -395,7 +411,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Spalding 2015 Highlight Portable 42'' Acrylic",
                     Description = "Portable basketball from the Highlight series of Spalding. With acrylic board width 42 '' and variable height from 2.28 to 3.05 meters so that both the youngest and the oldest basketball fans can enjoy the game!",
                     Price = 435.60,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\Spalding 2015 Highlight Portable 42'' Acrylic.jpg"
                 },
                 new Product
@@ -404,7 +420,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Amila Backboard 122 x 85 cm 49197",
                     Description = "Amila Backboard with three-colour net.",
                     Price = 219.90,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\Amila Backboard 122 x 85 cm 49197.jpg"
                 },
                 new Product
@@ -413,7 +429,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Amila Basketball Hoop with Springs & Net",
                     Description = "Amila Basketball Hoop with Springs & Net.",
                     Price = 67.90,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\Amila Basketball Hoop with Springs & Net.jpg"
                 },
                 new Product
@@ -422,7 +438,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Amila Basketball Hoop",
                     Description = "Basket wreath with steel tube and spring for pressure absorption from ball hitting and hanging by players. Its diameter is 45cm and includes net in the package. Suitable for every dashboard and basketball to play on the court, garden or cottage.",
                     Price = 64.90,
-                    CategoryId = 4,
+                    CategoryId = 13,
                     ImageUrl = @"\images\products\Amila Basketball Hoop.jpg"
                 },
                 new Product // Basketball Nets
@@ -431,43 +447,43 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 5,
+                    CategoryId = 14,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // Beanies
                 {
-                    ProductId = 64,
+                    ProductId = 53,
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 6,
+                    CategoryId = 15,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // Hats
                 {
-                    ProductId = 74,
+                    ProductId = 54,
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 7,
+                    CategoryId = 16,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // Headbands - Wristbands
                 {
-                    ProductId = 84,
+                    ProductId = 55,
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 8,
+                    CategoryId = 17,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // Hoodies
                 {
-                    ProductId = 94,
+                    ProductId = 56,
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 9,
+                    CategoryId = 18,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // ΝΒΑ Jerseys
@@ -476,7 +492,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 11,
+                    CategoryId = 20,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // ΝΒΑ Retro Jerseys
@@ -485,7 +501,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 12,
+                    CategoryId = 21,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // Shoes
@@ -494,16 +510,16 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 13,
+                    CategoryId = 22,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product // Socks
                 {
-                    ProductId =134 ,
+                    ProductId = 134,
                     Name = "Wilson NBA DVR Pump Kit",
                     Description = "This pump is light and easy to use so you can take it with you wherever you go. It is made for all basketballs.",
                     Price = 18.60,
-                    CategoryId = 14,
+                    CategoryId = 23,
                     ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
                 },
                 new Product  //stickers
@@ -512,26 +528,26 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "NBA Brooklyn Nets Stickers",
                     Description = "A pack of two stickers featuring your favourite NBA team!",
                     Price = 0.90,
-                    CategoryId = 15,
+                    CategoryId = 24,
                     ImageUrl = @"\images\products\Back Me Up NBA Brooklyn Nets Stickers.jpg"
                 },
-                 new Product 
+                 new Product
                  {
                      ProductId = 14,
                      Name = "NBA Chicago Bulls Stickers",
                      Description = "A pack of two stickers featuring your favourite NBA team!",
                      Price = 0.90,
-                     CategoryId = 15,
-                     ImageUrl = @"\images\products\Back Me Up NBA Chicago Bulls Stickers.png" 
+                     CategoryId = 24,
+                     ImageUrl = @"\images\products\Back Me Up NBA Chicago Bulls Stickers.png"
                  },
-                  new Product 
+                  new Product
                   {
                       ProductId = 15,
                       Name = "NBA Dallas Mavericks Stickers",
                       Description = "A pack of two stickers featuring your favourite NBA team!",
                       Price = 0.90,
-                      CategoryId = 15,
-                      ImageUrl = @"\images\products\Back Me Up NBA Dallas Mavericks Stickers.png"  
+                      CategoryId = 24,
+                      ImageUrl = @"\images\products\Back Me Up NBA Dallas Mavericks Stickers.png"
                   },
                   new Product
                   {
@@ -539,7 +555,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                       Name = "NBA Golden State Stickers",
                       Description = "A pack of two stickers featuring your favourite NBA team!",
                       Price = 0.90,
-                      CategoryId = 15,
+                      CategoryId = 24,
                       ImageUrl = @"\images\products\Back Me Up NBA Golden State Stickers.jpg"
                   },
                   new Product
@@ -548,8 +564,8 @@ namespace TheBuzzerBeater.DataAccess.Data
                       Name = "NBA Milwauke Bucks Stickers",
                       Description = "A pack of two stickers featuring your favourite NBA team!",
                       Price = 0.90,
-                      CategoryId = 15,
-                      ImageUrl = @"\images\products\Back Me Up NBA Milwauke Bucks Stickers.png" 
+                      CategoryId = 24,
+                      ImageUrl = @"\images\products\Back Me Up NBA Milwauke Bucks Stickers.png"
                   },
                   new Product
                   {
@@ -557,7 +573,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                       Name = "NBA Stickers",
                       Description = "A pack of two stickers featuring your favourite NBA team!",
                       Price = 0.90,
-                      CategoryId = 15,
+                      CategoryId = 24,
                       ImageUrl = @"\images\products\Back Me Up NBA Stickers.jpg"
                   },
                   new Product
@@ -566,7 +582,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                       Name = "NBA Phoenix Suns Stickers",
                       Description = "A pack of two stickers featuring your favourite NBA team!",
                       Price = 0.90,
-                      CategoryId = 15,
+                      CategoryId = 24,
                       ImageUrl = @"\images\products\Back Me Up Phoenix Suns Stickers.jpg"
                   },
                   new Product
@@ -575,16 +591,16 @@ namespace TheBuzzerBeater.DataAccess.Data
                       Name = "Nba Boston Celtics Stickers",
                       Description = "A pack of two stickers featuring your favourite NBA team!",
                       Price = 0.90,
-                      CategoryId = 15,
+                      CategoryId = 24,
                       ImageUrl = @"\images\products\Back Me Up Pvc Stickers Nba Boston Celtics.jpg"
                   },
                   new Product
                   {
-                      ProductId =21,
+                      ProductId = 21,
                       Name = "NBA New York Knicks Stickers",
                       Description = "A pack of two stickers featuring your favourite NBA team!",
                       Price = 0.90,
-                      CategoryId = 15,
+                      CategoryId = 24,
                       ImageUrl = @"\images\products\Back Me Up Pvc Stickers Ny Knics.jpg"
                   },
                   new Product
@@ -593,7 +609,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                       Name = "NBA Los Angeles Lakers Stickers",
                       Description = "A pack of two stickers featuring your favourite NBA team!",
                       Price = 0.90,
-                      CategoryId = 15,
+                      CategoryId = 24,
                       ImageUrl = @"\images\products\Back Me Up NBA Los Angeles Lakers Stickers.jpg"
                   }
                 );

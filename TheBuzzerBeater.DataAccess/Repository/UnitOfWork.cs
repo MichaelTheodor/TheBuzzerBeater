@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TheBuzzerBeater.DataAccess.Data;
 using TheBuzzerBeater.DataAccess.Repository.IRepository;
+using TheBuzzerBeater.Models;
 
 namespace TheBuzzerBeater.DataAccess.Repository
 {

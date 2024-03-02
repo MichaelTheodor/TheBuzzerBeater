@@ -1,0 +1,55 @@
+﻿@model TheBuzzerBeater.Models.Category
+
+@{
+    int categoryIdToDisplay = 3; // CategoryId for "Basketball Equipment"
+}
+
+<br>
+
+@if (Model.CategoryId == categoryIdToDisplay)
+{
+    <h2>@Model.Name</h2>
+    <br>
+
+    @* <div class="container mt-4">
+    </div> *@
+    <!-- Display products belonging to subcategories -->
+    @foreach (var subcategory in Model.Subcategories)
+    {
+        <h3>@subcategory.Name</h3>
+        <div class="row pb-3 text-primary">
+            @if (subcategory.Products != null && subcategory.Products.Any())
+            {
+                @foreach (var product in subcategory.Products)
+                {
+                    <div class="col-lg-3 col-sm-6 mb-3">
+                        <div class="card border-0 p-3 shadow rounded">
+                            <img src="@product.ImageUrl" class="card-img-top rounded" />
+                            <div class="card-body">
+                                <p class="card-title text-opacity-75 text-center overflow-hidden" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    @product.Name
+                                </p><br>
+                                <p class="text-opacity-75 text-center">
+                                    Price: <span>@product.Price.ToString("c")</span>
+                                </p>
+                            </div>
+                            <div>
+                                <a asp-action="ProductDetails" asp-controller="Home" asp-route-productId="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
+                                    Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No products found.</p>
+            }
+        </div>
+    }
+}
+else
+{
+    <p>Category not found.</p>
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -18,11 +19,30 @@ namespace TheBuzzerBeater.DataAccess.Repository
             _db = db;
         }
 
-        
-
         public void Update(Category obj)
         {
             _db.Categories.Update(obj);
+        }
+        public Category GetCategoryByName(string categoryName, bool includeProducts = false, bool includeSubcategories = false)
+        {
+            var query = _db.Categories.AsQueryable();
+
+            if (includeProducts)
+            {
+                query = query.Include(u => u.Products);
+            }
+
+            if (includeSubcategories)
+            {
+                query = query.Include(u => u.Subcategories)
+                    .ThenInclude(s => s.Products);
+            }
+
+            return query.FirstOrDefault(u => u.Name == categoryName);
+        }
+        public IEnumerable<Category> GetCategories()
+        {
+            return _db.Categories.ToList();
         }
     }
 }

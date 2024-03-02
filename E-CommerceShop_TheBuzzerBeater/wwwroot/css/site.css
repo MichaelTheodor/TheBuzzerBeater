@@ -89,3 +89,8 @@ hr.section__line {
 .bg-white {
     background-color: white !important;
 }
+.custom-img-size {
+    max-width: 100%;
+    height: auto ;
+
+}

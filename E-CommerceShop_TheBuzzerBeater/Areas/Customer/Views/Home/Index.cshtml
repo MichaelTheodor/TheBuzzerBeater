@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Product>
-
+﻿@model List<TheBuzzerBeater.Models.Category>
 
 <div class="container">
     <div class="row">
@@ -26,7 +25,7 @@
             </div>
         </div>
     </div><br>
-    
+
     <section class="brands__section bg-primary-outline">
         <div class="container ">
             <div class="position-relative">
@@ -59,82 +58,52 @@
                 <div class="text-center mt-4">
                     <h4 class="display-4">Score the Perfect Gear for Every Game!</h4>
                     <p class="lead mb-4">Explore our collection and elevate your game today!</p>
-                    <button class="btn btn-lg btn-primary booking-btn" id="booking-btn">SHOP NOW</button>
+                    <a class="btn btn-lg btn-primary booking-btn" asp-controller="Product" asp-action="Index">SHOP NOW</a>
                 </div>
             </div>
         </div>
-    </div><br>
+    </div><br><br>
 
-    <!-- Section 3: Featured Products -->
-    <section id="featured-products" class="featured-products">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center mb-4">Featured Products</h2>
+                    <h2 class="text-center mb-4"><strong>Featured Products</strong></h2>
                 </div>
-            </div>
+            </div><br>
             <div class="row">
-                <!-- Replace the col-md-4 with your product card component -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="product-image.jpg" class="card-img-top" alt="Product Image">
+                @foreach (var category in Model)
+                {
                         <div class="card-body">
-                            <h5 class="card-title">Product Name</h5>
-                            <p class="card-text">Product Description</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
+                            <h2 class="card-title text-primary text-center">
+                                @category.Name
+                            </h2><br>
+                            <img src="@category.ImageUrl" class="card-img-top rounded custom-img-size" alt="@category.Name" /><br><br>
+                        <a class="btn btn-primary bg-gradient border-0 form-control" asp-controller="Category" asp-action="CategoryDetails" asp-route-categoryName="@category.Name">
+                                BUY NOW
+                            </a><br><br>
                         </div>
-                    </div>
-                </div>
-                <!-- Add more product cards as needed -->
+                }
+
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Promotions and Deals -->
     <section class="promotions">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="promo-banner text-center">
-                        <h2>Check out our latest promotions!</h2>
-                        <p>Hurry up! Limited-time offers</p>
-                        <a href="#special-offers" class="btn btn-lg btn-warning">View Deals</a>
+                        <br>
+                        <h2><strong>Check out our latest promotions!</strong></h2><br>
+                        <h4>Hurry up! Limited-time offers</h4><br>
+                        <a class="btn btn-lg btn-primary" asp-controller="Category" asp-action="SalesAndClearance">VIEW DEALS</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <h4>Explore Our Exclusive Collection:</h4> <br> <br>
-
-    <div class="row pb-3 text-primary">  
-        @foreach (var group in Model.GroupBy(u => u.Category.Name))
-        {
-            <h2>@group.Key</h2>
-            @foreach (var product in group)
-            {
-                <div class="col-lg-3 col-sm-6 mb-3">
-                    <div class="card border-0 p-3 shadow rounded">
-                        <img src="@product.ImageUrl" class="card-img-top rounded" />
-                        <div class="card-body">
-                            <p class="card-title text-opacity-75 text-center overflow-hidden" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                @product.Name
-                            </p><br>
-                            <p class="text-opacity-75 text-center">
-                                Price: <span>@product.Price.ToString("c")</span>
-                            </p>
-                        </div>
-                        <div>
-                            <a asp-action="ProductDetails" asp-route-productId="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-    </div>
 </div>
-<br> 
+<br>
 
 

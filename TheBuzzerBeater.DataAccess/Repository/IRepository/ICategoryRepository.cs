@@ -10,6 +10,7 @@ namespace TheBuzzerBeater.DataAccess.Repository.IRepository
     public interface ICategoryRepository : IRepository<Category>
     {
         void Update(Category obj);
-        
+        Category GetCategoryByName(string categoryName, bool includeProducts = false, bool includeSubcategories = false);
+        IEnumerable<Category> GetCategories();
     }
 }
