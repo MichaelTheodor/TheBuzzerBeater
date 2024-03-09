@@ -20,7 +20,7 @@ body {
  /* margin-bottom: 60px;*/
 }
 .btn-action {
-    width: 100%; /* Adjust the width as needed */
+    width: 100%; 
 }
 
 .divider-text:before,
@@ -34,7 +34,7 @@ body {
 }
 
 .video-container {
-    min-height: 300px; /* Adjust the minimum height as needed */
+    min-height: 300px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +42,7 @@ body {
 }
 
 video {
-    max-width: 100%; /* Ensure the video does not exceed its container's width */
+    max-width: 100%; 
     height: auto;
 }
 .brands__section .img-fluid {
@@ -83,7 +83,7 @@ video {
 hr.section__line {
     background-color: #df691a;
     border: none; /* Ensure no border is applied */
-    height: 2px; /* Set the height of the line */
+    height: 2px; 
 }
 
 .bg-white {
@@ -91,6 +91,10 @@ hr.section__line {
 }
 .custom-img-size {
     max-width: 100%;
-    height: auto ;
-
+    height: auto;
+}
+.promo-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 800px;
 }
