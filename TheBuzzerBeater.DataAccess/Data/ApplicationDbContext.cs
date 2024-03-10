@@ -565,7 +565,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Description = "This Jordan Pro Jumpman Snapback hat takes your style to the next level and features an embroidered Jumpman design on the front. Top quality fabric and design with back pleats ensure a classic look.",
                     Price = 24.90,
                     CategoryId = 16,
-                    ImageUrl = @"\images\products\Wilson NBA DVR Pump Kit.jpg"
+                    ImageUrl = @"\images\products\Jordan Pro Jumpman Snapback Unisex Hat.jpg"
                 },
                 new Product
                 {
@@ -582,7 +582,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "NBA Finals 950 Denver Nuggets",
                     Description = "NEW ERA NBA Finals 950 Denver Nuggets",
                     Price = 40.00,
-                    CategoryId = 17,
+                    CategoryId = 16,
                     ImageUrl = @"\images\products\NBA Finals 950 Dennug.jpg"
                 },
                 new Product
@@ -591,7 +591,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "NBA Finals 950 Miami Heat",
                     Description = "NEW ERA NBA Finals 950 Miami Heat",
                     Price = 40.00,
-                    CategoryId = 17,
+                    CategoryId = 16,
                     ImageUrl = @"\images\products\NBA Finals 950 Miahea.jpg"
                 },
                 new Product
@@ -600,7 +600,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Jordan Pro Jumpman Classics Cap Black",
                     Description = "Complete each athleisure outfit with a cap! The new Jordan Pro Jumpman Classics Cap is made from lightweight fabric, features a sightly curved brim and of course the iconic Jumpman style. Its premium fabric and snapback design give you a classic look.",
                     Price = 26.99,
-                    CategoryId = 17,
+                    CategoryId = 16,
                     ImageUrl = @"\images\products\Jordan Pro Jumpman Classics Cap Black.jpg"
                 },
                 new Product
@@ -609,7 +609,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Jordan Pro Jumpman Classics Cap Mint",
                     Description = "Complete each athleisure outfit with a cap! The new Jordan Pro Jumpman Classics Cap is made from lightweight fabric, features a sightly curved brim and of course the iconic Jumpman style. Its premium fabric and snapback design give you a classic look.",
                     Price = 26.99,
-                    CategoryId = 17,
+                    CategoryId = 16,
                     ImageUrl = @"\images\products\Jordan Pro Jumpman Classics Cap Mint.jpg"
                 },
                 new Product
@@ -618,7 +618,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Jordan Pro Jumpman Classics Cap Orange",
                     Description = "Complete each athleisure outfit with a cap! The new Jordan Pro Jumpman Classics Cap is made from lightweight fabric, features a sightly curved brim and of course the iconic Jumpman style. Its premium fabric and snapback design give you a classic look.",
                     Price = 26.99,
-                    CategoryId = 17,
+                    CategoryId = 16,
                     ImageUrl = @"\images\products\Jordan Pro Jumpman Classics Cap Orange.jpg"
                 },
                 new Product
@@ -627,7 +627,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                     Name = "Jordan Jumpman Washed Bucket Hat",
                     Description = "The Jordan Jumpman Bucket Hat is made from lightweight woven twill that's been washed for a vintage look to top off your style. Combine it with your favorite outfit & skyrocket your style.",
                     Price = 34.99,
-                    CategoryId = 17,
+                    CategoryId = 16,
                     ImageUrl = @"\images\products\Jordan Jumpman Washed Bucket Hat.jpg"
                 },
                  new Product
@@ -636,7 +636,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                      Name = "Jordan Jumpman Washed Bucket Hat White",
                      Description = "The Jordan Jumpman Bucket Hat is made from lightweight woven twill that's been washed for a vintage look to top off your style. Combine it with your favorite outfit & skyrocket your style.",
                      Price = 34.99,
-                     CategoryId = 17,
+                     CategoryId = 16,
                      ImageUrl = @"\images\products\Jordan Jumpman Washed Bucket Hat White.jpg"
                  },
                   new Product
@@ -645,7 +645,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                       Name = "Jordan Jumpman Washed Bucket Hat Red",
                       Description = "The Jordan Jumpman Bucket Hat is made from lightweight woven twill that's been washed for a vintage look to top off your style. Combine it with your favorite outfit & skyrocket your style.",
                       Price = 34.99,
-                      CategoryId = 17,
+                      CategoryId = 16,
                       ImageUrl = @"\images\products\Jordan Jumpman Washed Bucket Hat Red.jpg"
                   },
                 new Product // Headbands - Wristbands
@@ -1168,7 +1168,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                         Description = "Dennis Rodman Chicago Bulls Mitchell & Ness NBA Jersey",
                         Price = 105,
                         CategoryId = 21,
-                        ImageUrl = @"\images\products\Dennis Rodman Chicago Bulls Mitchell & Ness NBA Jersey.jpg"
+                        ImageUrl = @"\images\products\Dennis Rodman Chicago Bulls Mitchell & Ness NBA  Jersey.jpg"
                     },
                     new Product
                     {
@@ -1231,7 +1231,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                         Description = "Kareem Abdul Jabbar Los Angeles Lakers 1984-85 Mitchell & Ness NBA Jersey",
                         Price = 105,
                         CategoryId = 21,
-                        ImageUrl = @"\images\products\Kareem Abdul Jabbar Los Angeles Lakers 1984-85 Mitchell & Ness NBA Jersey.png"
+                        ImageUrl = @"\images\products\Kareem Abdul Jabbar Los Angeles Lakers 1984-85 Mitchell & Ness NBA  Jersey.png"
                     },
                     new Product
                     {
@@ -1240,7 +1240,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                         Description = "Karl Malone Utah Jazz 1996-97  Mitchell & Ness NBA Jersey",
                         Price = 105,
                         CategoryId = 21,
-                        ImageUrl = @"\images\products\Karl Malone Utah Jazz 1996-97  Mitchell & Ness NBA Jersey.png"
+                        ImageUrl = @"\images\products\Karl Malone Utah Jazz 1996-97  Mitchell & Ness NBA  Jersey.png"
                     },
                     new Product
                     {
@@ -1249,7 +1249,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                         Description = "Magic Johnson Los Angeles Lakers 1984 Mitchell & Ness NBA  Jersey",
                         Price = 105,
                         CategoryId = 21,
-                        ImageUrl = @"\images\products\Magic Johnson Los Angeles Lakers 1984 Mitchell & Ness NBA Jersey.png"
+                        ImageUrl = @"\images\products\Magic Johnson Los Angeles Lakers 1984 Mitchell & Ness NBA  Jersey.png"
                     },
                     new Product
                     {
@@ -1321,7 +1321,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                         Description = "The future of basketball is all about speed, and Donovan Mitchell is as fast as they come. These signature shoes from Mitchell and adidas Basketball are built specifically to elevate the movements of one of the game's fastest, most dynamic scorers. Ultralight Lightstrike teams up with a LIGHTLOCK upper for a snug fit and a propulsion system that won't weigh you down. A unique rubber outsole is designed to generate traction where you need it most, so every hard-charging cut and head fake has total support. Mitchell's Spida logo and signature graphics provide the finishing touches.Made in part with recycled content generated from production waste, e.g. cutting scraps, and post-consumer household waste to avoid the larger environmental impact of producing virgin content.",
                         Price = 66.00,
                         CategoryId = 5,
-                        ImageUrl = @"\images\products\adidas D.O.N. Issue 4.png"
+                        ImageUrl = @"\images\products\adidas D.O.N. Issue 4.jpg"
                     },
                     new Product
                     {
@@ -1393,7 +1393,7 @@ namespace TheBuzzerBeater.DataAccess.Data
                         Description = "This basketball shoe is inspired by the environment and life of John. Giannis Antetokounmpo has explosive power on the court and needs a shoe that can fully showcase his exceptional ability. The Zoom Freak 5 adopts a fast design to help it launch with amazing speed. At the same time, it is equipped with an absorption configuration to bring a bounce effect to the game. Do your thing and rush past your opponents or pull off key defensive moves like Giannis. Whatever you do, the durable rubber outsole gives you strong traction to get it done.\r\n",
                         Price = 124.99,
                         CategoryId = 22,
-                        ImageUrl = @"\images\products\Nike Freak 5 ,Made in Sepolia,Men's Basketball Shoes.png"
+                        ImageUrl = @"\images\products\Nike Freak 5 ,Made in Sepolia,Men's Basketball Shoes.jpg"
                     },
                     new Product
                     {

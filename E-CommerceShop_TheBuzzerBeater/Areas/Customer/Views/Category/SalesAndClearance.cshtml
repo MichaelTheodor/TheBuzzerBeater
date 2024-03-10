@@ -14,13 +14,11 @@
     @* <div class="container mt-4">
     </div> *@
     <!-- Display products belonging to subcategories -->
-    @foreach (var subcategory in Model.Subcategories)
-    {
-        <h3>@subcategory.Name</h3>
+   
         <div class="row pb-3 text-primary">
-            @if (subcategory.Products != null && subcategory.Products.Any())
+            @if (Model.Products != null )
             {
-                @foreach (var product in subcategory.Products)
+                @foreach (var product in Model.Products)
                 {
                     <div class="col-lg-3 col-sm-6 mb-3">
                         <div class="card border-0 p-3 shadow rounded">
@@ -47,7 +45,7 @@
                 <p>No products found.</p>
             }
         </div>
-    }
+    
 }
 else
 {

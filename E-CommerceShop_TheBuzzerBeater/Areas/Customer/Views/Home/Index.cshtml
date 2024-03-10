@@ -102,7 +102,7 @@
                         <h2><strong>Check out our latest promotions!</strong></h2><br>
                         <img src="~/images/site/Clearance.png" class="promo-image" /><br><br>
                         <h3>Hurry up! Limited-time offers</h3><br>
-                        <a class="btn btn-lg btn-warning asp-controller="Category" asp-action="SalesAndClearance">VIEW DEALS</a>
+                        <a href="@Url.Action("SalesAndClearance", "Category", new { area = "Customer" })" class="btn btn-lg btn-primary rounded-circle p-4">VIEW DEALS</a>
                     </div>
                 </div>
             </div>
