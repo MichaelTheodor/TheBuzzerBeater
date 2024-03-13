@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
 using System.Diagnostics.CodeAnalysis;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using TheBuzzerBeater.DataAccess.Repository.IRepository;
 using TheBuzzerBeater.Models;
@@ -16,12 +19,15 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
     {
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmailSender _emailSender;
+        private readonly IConfiguration _configuration;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
-        public CartController(IUnitOfWork unitOfWork)
+        public CartController(IUnitOfWork unitOfWork, IEmailSender emailSender, IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
-
+            _emailSender = emailSender;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -29,7 +35,7 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            
+
 
             ShoppingCartVM = new()
             {
@@ -46,7 +52,7 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
             return View(ShoppingCartVM);
         }
 
-        public IActionResult Summary() 
+        public IActionResult Summary()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -81,31 +87,31 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
         }
         [HttpPost]
         [ActionName("Summary")]
-		public IActionResult SummaryPOST()
-		{
-			var claimsIdentity = (ClaimsIdentity)User.Identity;
-			var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+        public IActionResult SummaryPOST()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-			ShoppingCartVM.ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId,
-				includeProperties: "Product");
+            ShoppingCartVM.ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId,
+                includeProperties: "Product");
 
-			ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
-			ShoppingCartVM.OrderHeader.ApplicationUserId = userId;
+            ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
+            ShoppingCartVM.OrderHeader.ApplicationUserId = userId;
 
-			ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
-            
+            ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
 
-			foreach (var cart in ShoppingCartVM.ShoppingCartList)
-			{
-				cart.Price = GetPriceBasedOnQuantity(cart);
-				ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
-			}
-            
-            
+
+            foreach (var cart in ShoppingCartVM.ShoppingCartList)
+            {
+                cart.Price = GetPriceBasedOnQuantity(cart);
+                ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
+            }
+
+
             ShoppingCartVM.OrderHeader.PaymentStatus = StaticDetails.PaymentStatusPending;
             ShoppingCartVM.OrderHeader.OrderStatus = StaticDetails.StatusPending;
-			
-			_unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
+
+            _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
             _unitOfWork.Save();
 
             foreach (var cart in ShoppingCartVM.ShoppingCartList)
@@ -120,39 +126,39 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
                 _unitOfWork.OrderDetail.Add(orderDetail);
 
             }
-                _unitOfWork.Save();
+            _unitOfWork.Save();
 
-                var domain = "https://localhost:7164/";
-				var options = new SessionCreateOptions
-				{
-					SuccessUrl = domain+ $"customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.OrderHeaderId}",
-                    CancelUrl = domain+ "/customer/cart/index",
-					LineItems = new List<SessionLineItemOptions> (),  
-					Mode = "payment",
-				};
+            var domain = "https://localhost:7164/";
+            var options = new SessionCreateOptions
+            {
+                SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.OrderHeaderId}",
+                CancelUrl = domain + "/customer/cart/index",
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+            };
 
-                foreach(var item in ShoppingCartVM.ShoppingCartList)
+            foreach (var item in ShoppingCartVM.ShoppingCartList)
+            {
+                var sessionLineItem = new SessionLineItemOptions()
                 {
-                    var sessionLineItem = new SessionLineItemOptions()
+                    PriceData = new SessionLineItemPriceDataOptions()
                     {
-                        PriceData = new SessionLineItemPriceDataOptions()
+                        UnitAmount = (long)(item.Price * 100), // $20.50 => 2050
+                        Currency = "eur",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
-                            UnitAmount = (long)(item.Price * 100), // $20.50 => 2050
-							Currency = "eur",
-                            ProductData = new SessionLineItemPriceDataProductDataOptions
-                            {
-                                Name = item.Product.Name
-                            }
-                        },
-                        Quantity = item.Count
-                    };
-                    options.LineItems.Add(sessionLineItem);
-                }
+                            Name = item.Product.Name
+                        }
+                    },
+                    Quantity = item.Count
+                };
+                options.LineItems.Add(sessionLineItem);
+            }
 
-				var service = new SessionService();
-				Session session = service.Create(options);
-                _unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.OrderHeaderId,session.Id,session.PaymentIntentId);
-                _unitOfWork.Save();
+            var service = new SessionService();
+            Session session = service.Create(options);
+            _unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.OrderHeaderId, session.Id, session.PaymentIntentId);
+            _unitOfWork.Save();
 
             //Response.Headers.Add("Location", session.Url);
             //return new StatusCodeResult(303);
@@ -161,12 +167,12 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
             // Redirect the user to the Stripe checkout page
             return Redirect(session.Url);
-           
-		}
 
-        public IActionResult OrderConfirmation(int id) 
+        }
+
+        public IActionResult OrderConfirmation(int id)
         {
-            OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(u =>u.OrderHeaderId == id, includeProperties: "ApplicationUser");
+            OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(u => u.OrderHeaderId == id, includeProperties: "ApplicationUser");
             if (orderHeader == null)
             {
                 return NotFound();
@@ -174,24 +180,88 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
             var service = new SessionService();
             Session session = service.Get(orderHeader.SessionId);
 
-            if(session != null && session.PaymentStatus.ToLower() == "paid") 
+            if (session != null && session.PaymentStatus.ToLower() == "paid")
             {
-				_unitOfWork.OrderHeader.UpdateStripePaymentID(id, session.Id, session.PaymentIntentId); 
+                _unitOfWork.OrderHeader.UpdateStripePaymentID(id, session.Id, session.PaymentIntentId);
                 _unitOfWork.OrderHeader.UpdateStatus(id, StaticDetails.StatusApproved, StaticDetails.PaymentStatusApproved);
                 _unitOfWork.Save();
-			}
+
+                // Send order confirmation email
+                SendOrderConfirmationEmail(orderHeader, _configuration);
+            }
             HttpContext.Session.Clear();
 
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
-                .GetAll(u=> u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
+                .GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
 
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
             _unitOfWork.Save();
-			
-			return View(id);
+
+            return View(id);
         }
 
-		public IActionResult Plus(int cartId)
+        private async Task SendOrderConfirmationEmail(OrderHeader orderHeader, IConfiguration configuration)
+        {
+            try
+            {
+                // Get email settings from configuration
+                string senderEmail = _configuration["EmailSettings:SenderEmail"];
+                int smtpPort = int.Parse(_configuration["EmailSettings:SmtpPort"]);
+                string smtpServer = _configuration["EmailSettings:SmtpServer"];
+                bool enableSsl = bool.Parse(_configuration["EmailSettings:EnableSsl"]);
+                string smtpUsername = _configuration["EmailSettings:SmtpUsername"];
+                string smtpPassword = _configuration["EmailSettings:SmtpPassword"];
+
+                string email = orderHeader.ApplicationUser.Email;
+                string subject = "Order Confirmation";
+                string body = $"Dear {orderHeader.FirstName},<br/><br/>" +
+                              $"Thank you for your order. Your order with ID {orderHeader.OrderHeaderId} has been successfully placed.<br/><br/>" +
+                              $"Total Amount: {orderHeader.OrderTotal:C}<br/><br/>" +
+                              $"We will notify you once your order has been processed and shipped.<br/><br/>" +
+                              $"Regards,<br/>The Buzzer Beater Store";
+
+                // Send the email
+                bool success = await SendEmailAsync(email, subject, body, senderEmail, smtpPort, smtpServer, enableSsl, smtpUsername, smtpPassword);
+                if (!success)
+                {
+                    // Handle failure to send email
+                    Console.WriteLine("Failed to send order confirmation email.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine($"Error sending order confirmation email: {ex.Message}");
+            }
+        }
+
+        private async Task<bool> SendEmailAsync(string email, string subject, string body, string senderEmail, int smtpPort, string smtpServer, bool enableSsl, string smtpUsername, string smtpPassword)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
+                mail.From = new MailAddress(senderEmail);
+                mail.To.Add(email);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.IsBodyHtml = true;
+
+                smtpClient.EnableSsl = enableSsl;
+                smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
+
+                await smtpClient.SendMailAsync(mail);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending email: {ex.Message}");
+                return false;
+            }
+        }
+
+
+        public IActionResult Plus(int cartId)
         {
             var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId);
             cartFromDb.Count += 1;
@@ -203,14 +273,14 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
         public IActionResult Minus(int cartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId, tracked: true); 
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId, tracked: true);
             if (cartFromDb.Count <= 1)
             {
                 //remove that from cart
-                _unitOfWork.ShoppingCart.Remove(cartFromDb); //this was at line 205
+                _unitOfWork.ShoppingCart.Remove(cartFromDb); 
                 HttpContext.Session.SetInt32(StaticDetails.SessionCart, _unitOfWork.ShoppingCart
                 .GetAll(u => u.ApplicationUserId == cartFromDb.ApplicationUserId).Count() - 1);
-                
+
             }
             else
             {
@@ -224,16 +294,16 @@ namespace TheBuzzerBeater.Web.Areas.Customer.Controllers
 
         public IActionResult Remove(int cartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId,tracked : true); 
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ProductId == cartId, tracked: true);
 
-            _unitOfWork.ShoppingCart.Remove(cartFromDb); //this was at line 226
+            _unitOfWork.ShoppingCart.Remove(cartFromDb); 
 
             HttpContext.Session.SetInt32(StaticDetails.SessionCart, _unitOfWork.ShoppingCart
              .GetAll(u => u.ApplicationUserId == cartFromDb.ApplicationUserId).Count() - 1);
 
-            
+
             _unitOfWork.Save();
-            
+
             return RedirectToAction(nameof(Index));
         }
 

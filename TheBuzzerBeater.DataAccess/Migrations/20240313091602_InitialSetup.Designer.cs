@@ -12,7 +12,7 @@ using TheBuzzerBeater.DataAccess.Data;
 namespace TheBuzzerBeater.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240309194738_InitialSetup")]
+    [Migration("20240313091602_InitialSetup")]
     partial class InitialSetup
     {
         /// <inheritdoc />
